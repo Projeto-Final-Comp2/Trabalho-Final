@@ -347,7 +347,7 @@ class JanelaBase():
             bg=self.__corBotaoBg,
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
-            command=lambda:self.__adicionaValor('sin(radians(')
+            command=lambda:self.__adicionaValor('sin(grau)')
         )
 
         self.botaoCos = Button(
@@ -376,7 +376,27 @@ class JanelaBase():
             bg=self.__corBotaoBg,
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
-            command=lambda:self.__adicionaValor('**2')
+            command=lambda:self.__adicionaValor('**') 
+        )
+
+        self.botaoApagar = Button(
+            self.janela,
+            text='Del',
+            fg=self.__corBotaoTexto,
+            bg=self.__corBotaoBg,
+            height=self.__alturaBotao,
+            width=self.__comprimentoBotao,
+            command=self.__limpar
+        )
+
+        self.botaoManual = Button(
+            self.janela,
+            text='?',
+            fg=self.__corBotaoTexto,
+            bg=self.__corBotaoBg,
+            height=self.__alturaBotao,
+            width=self.__comprimentoBotao,
+            command=self.__manual
         )
 
 
@@ -405,7 +425,8 @@ class JanelaBase():
         self.botaoCos         .grid(row=3, column=4)
         self.botaoTan         .grid(row=4, column=4)
         self.botaoElevado     .grid(row=6, column=2)
-        
+        self.botaoApagar      .grid(row=5, column=4)
+        self.botaoManual      .grid(row=6, column=4)
         return None
 
     # Método Privado
@@ -448,7 +469,7 @@ class JanelaBase():
         self.conteudoCaixa.set('')
 
         return None
-
+    
     # Método Privado
     def __perguntarPraSair(
         self : object,
@@ -472,7 +493,20 @@ class JanelaBase():
             pass
 
         return None
+    
+    def __manual(
+        self : object,
+        event: 'Event' = None
+        ):
+        'Exibe uma janela perguntando se deseja fechar a janela'
 
+        # Abrindo janela com o diálogo
+        decisao = messagebox.showinfo(
+            'Manual',
+            'Olá! Dúvidas? Veja se isso ajuda:\n\nIsso: Assim\nAquilo: Assado\nFulano: De tal'
+        )
+        return None
+    
     # Método Privado
     def __resolveExpressao(
         self : object,
@@ -554,7 +588,7 @@ class JanelaBase():
         titulo          : str         = 'Calculadora',
         corFundo        : str         = 'light blue',
         corFundoBotao   : str         = 'pink',
-        corTextoBotao   : str         = 'gray',
+        corTextoBotao   : str         = 'black',
         alturaBotao     : [int,float] = 1,
         comprimentoBotao: [int,float] = 1,
         myFile          : 'file'      = sys.stderr # sys.stderr: Texto no Shell Vermelho
