@@ -369,6 +369,15 @@ class JanelaBase():
             width=self.__comprimentoBotao,
             command=lambda:self.__adicionaValor('tan(radians(')
         )
+        self.botaoElevado = Button(
+            self.janela,
+            text='X²',
+            fg=self.__corBotaoTexto,
+            bg=self.__corBotaoBg,
+            height=self.__alturaBotao,
+            width=self.__comprimentoBotao,
+            command=lambda:self.__adicionaValor('**2')
+        )
 
 
         # Posicionando os botões considerando um grid
@@ -395,7 +404,8 @@ class JanelaBase():
         self.botaoSin         .grid(row=2, column=4)
         self.botaoCos         .grid(row=3, column=4)
         self.botaoTan         .grid(row=4, column=4)
-
+        self.botaoElevado     .grid(row=6, column=2)
+        
         return None
 
     # Método Privado
@@ -478,6 +488,7 @@ class JanelaBase():
         try:
             # Ajustando os simbolos de multiplicação e divisão
             expressao = self.expressao.replace('x','*').replace('÷','/')
+            expressao = self.expressao.replace('sin','sin(radians)')
 
             # Avaliando a expressão
             resultado = eval(expressao)
@@ -533,6 +544,7 @@ class JanelaBase():
         # Habilitando BACKSPACE para limpar caixa de texto
         self.janela.bind('<BackSpace>', self.__limpar)
 
+
         return None
 
     # Método Público    
@@ -550,6 +562,15 @@ class JanelaBase():
                                                    # yourFile  : Texto no Arquivo '.txt' dado
         ):
         'Executando janela e sua funções'
+
+        #self.botao1 = Button(
+            #self.janela,                 # Onde será colocado o botão
+            #text='1',                    # Texto a ser exibido no botão
+            #fg=self.__corBotaoTexto,        # Cor do texto
+            #bg=self.__corBotaoBg,          # Cor de fundo do botão
+            #height=self.__alturaBotao,     # Altura do botão
+            #width=self.__comprimentoBotao, # Comprimento do botão
+            #command=lambda:self.__adicionaValor(1
 
         # Criando uma instancia da janela base
         print('\n> Instanciando uma janela base', end='... ', file=myFile)
