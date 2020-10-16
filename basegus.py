@@ -39,6 +39,9 @@ class JanelaBase():
     # Importando um pacote interno do python
     import sys
 
+    ## Definindo variável booleana shift
+    #shift=False
+
     # Listando todos os atributos e método públicos
     __all__ = [
         'expressao', 'conteudoCaixa', 'rodandoJanela'
@@ -313,13 +316,13 @@ class JanelaBase():
         )
 
         #self.botaoShift = Button(
-            #self.janela,                 
-            #text='Shift',                    
-            #fg=self.__corBotaoTexto,        
-            #bg=self.__corBotaoBg,          
-            #height=self.__alturaBotao,     
-            #width=self.__comprimentoBotao, 
-            #command=self.__,
+        #    self.janela,                 
+        #    text='Shift',                    
+        #    fg=self.__corBotaoTexto,        
+        #    bg=self.__corBotaoBg,          
+        #    height=self.__alturaBotao,     
+        #    width=self.__comprimentoBotao, 
+        #    command=self.__shift
         #)
 
         self.botaoPi = Button(
@@ -433,7 +436,7 @@ class JanelaBase():
         )
         self.botaoElevado = Button(
             self.janela,
-            text='X²',
+            text='xʸ',
             fg=self.__corBotaoTexto,
             bg=self.__corBotaoBg,
             height=self.__alturaBotao,
@@ -474,6 +477,8 @@ class JanelaBase():
         self.botao8               .grid(row=2, column=1)
         self.botao9               .grid(row=2, column=2)
         self.botao0               .grid(row=5, column=0)
+        #shift=True
+        #if shift==False:
         self.botaoPlus            .grid(row=2, column=3)
         self.botaoMinus           .grid(row=3, column=3)
         self.botaoMultiply        .grid(row=4, column=3)
@@ -495,6 +500,7 @@ class JanelaBase():
         self.botaoLn              .grid(row=7, column=1)
         self.botaoConverteRadianos.grid(row=8, column=1)
         self.botaoConverteGraus   .grid(row=8, column=0)
+        self.botaoShift           .grid(row=7, column=5)
        
         return None
 
@@ -538,6 +544,23 @@ class JanelaBase():
         self.conteudoCaixa.set('')
 
         return None
+    
+     #def __shift(
+     #   self : object,
+     #   event: 'Event' = None
+     #   ):
+     #   "Alternando entre modo principal e alternativo da calculadora"
+     #   shift=False
+     #   # Alterando a variável Shift
+     #   if shift==False:
+     #       shift=True
+     #       
+     #   else:
+     #       shift=False
+     #   self.destroy()
+     #   self.__init__()
+     #   
+     #   return None
     
     # Método Privado
     def __perguntarPraSair(
