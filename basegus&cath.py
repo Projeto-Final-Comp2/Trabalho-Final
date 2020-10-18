@@ -347,7 +347,7 @@ class JanelaBase():
             bg=self.__corBotaoBg,
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
-            command=lambda:self.__adicionaValor('factorial(')
+            command=self.__fatorial
         )
           
         self.botaoLn = Button(
@@ -357,7 +357,7 @@ class JanelaBase():
             bg=self.__corBotaoBg,
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
-            command=lambda:self.__adicionaValor('log(')
+            command=self.__log
         )
           
         self.botaoConverteRadianos = Button(
@@ -367,7 +367,7 @@ class JanelaBase():
             bg=self.__corBotaoBg,
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
-            command=lambda:self.__adicionaValor('radians(')
+            command=self.__rad
         )
           
         self.botaoConverteGraus = Button(
@@ -377,7 +377,7 @@ class JanelaBase():
             bg=self.__corBotaoBg,
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
-            command=lambda:self.__adicionaValor('degrees(')
+            command=self.__deg
         )
           
         self.botaoParenteses1 = Button(
@@ -407,7 +407,7 @@ class JanelaBase():
             bg=self.__corBotaoBg,
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
-            command=lambda:self.__adicionaValor('sin(grau)')
+            command=self.__sin
         )
 
         self.botaoCos = Button(
@@ -417,7 +417,7 @@ class JanelaBase():
             bg=self.__corBotaoBg,
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
-            command=lambda:self.__adicionaValor('cos(radians(')
+            command=self.__cos
         )
 
         self.botaoTan = Button(
@@ -427,7 +427,7 @@ class JanelaBase():
             bg=self.__corBotaoBg,
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
-            command=lambda:self.__adicionaValor('tan(radians(')
+            command=self.__tan
         )
         self.botaoElevado = Button(
             self.janela,
@@ -488,6 +488,16 @@ class JanelaBase():
             command=self.__romanos
         )
 
+        self.arredondar = Button(
+            self.janela,
+            text='~=',
+            fg=self.__corBotaoTexto,
+            bg=self.__corBotaoBg,
+            height=self.__alturaBotao,
+            width=self.__comprimentoBotao,
+            command=self.__arredondar
+        )
+
 
         # Posicionando os botões considerando um grid
         # com 6 linhas e 4 colunas
@@ -525,6 +535,7 @@ class JanelaBase():
         self.botaoMedia           .grid(row=5, column=4)
         self.botaoFracao          .grid(row=8, column=0)
         self.botaoRomanos         .grid(row=8, column=1)
+        self.arredondar           .grid(row=8, column=2)
         return None
 
     # Método Privado
@@ -654,6 +665,82 @@ class JanelaBase():
         else:
             self.conteudoCaixa.set('O número precisa ser <4000')
         return None
+
+    def __sin(
+        self : object,
+        event: 'Event' = None
+        ):
+        'transforma o grau dado em radianos e devolve o sin'
+        self.expressao=int(self.expressao)
+        nova=radians(self.expressao)
+        seno=sin(nova)
+        self.conteudoCaixa.set(round(seno,1))
+        return None
+
+    def __cos(
+        self : object,
+        event: 'Event' = None
+        ):
+        'transforma o grau dado em radianos e devolve o cos'
+        self.expressao=int(self.expressao)
+        nova=radians(self.expressao)
+        cose=cos(nova)
+        self.conteudoCaixa.set(round(cose,1))
+        return None
+
+    def __tan(
+        self : object,
+        event: 'Event' = None
+        ):
+        'transforma o grau dado em radianos e devolve o tan'
+        self.expressao=int(self.expressao)
+        nova=radians(self.expressao)
+        tang=tan(nova)
+        self.conteudoCaixa.set((tang,1))
+        return None
+
+    def __arredondar(
+        self : object,
+        event: 'Event' = None
+        ):
+        'arredonda o valor'
+        self.expressao=str(self.conteudoCaixa)
+        copia2=int(self.expressao)
+        self.conteudoCaixa.set(round(copia2,1))
+        return None
+
+    def __fatorial(
+        self : object,
+        event: 'Event' = None
+        ):
+        'devolve o fatorial do numero'
+        self.conteudoCaixa.set(factorial(int(self.expressao)))
+        return None
+
+    def __log(
+        self : object,
+        event: 'Event' = None
+        ):
+        'devolve o log do numero'
+        self.conteudoCaixa.set(log(int(self.expressao)))
+        return None
+
+    def __rad(
+        self : object,
+        event: 'Event' = None
+        ):
+        'transforma o grau dado em radianos'
+        self.conteudoCaixa.set(radians(int(self.expressao)))
+        return None
+
+    def __deg(
+        self : object,
+        event: 'Event' = None
+        ):
+        'transforma o radianos dado em graus'
+        self.conteudoCaixa.set(degrees(int(self.expressao)))
+        return None
+    
     
     # Método Privado
     def __resolveExpressao(
@@ -669,8 +756,7 @@ class JanelaBase():
         # Tratando possíveis erros
         try:
             # Ajustando os simbolos de multiplicação e divisão
-            expressao = self.expressao.replace('x','*').replace('÷','/')
-            expressao = self.expressao.replace('π','pi')
+            expressao = self.expressao.replace('x','*').replace('÷','/').replace('π','pi')
 
             # Avaliando a expressão
             resultado = eval(expressao)
