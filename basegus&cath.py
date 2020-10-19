@@ -458,7 +458,7 @@ class JanelaBase():
             bg=self.__corBotaoBg,
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
-            command=self.__limpar
+            command=self.__apagar
         )
 
         # Criando um botão funcional com o texto '?'
@@ -515,8 +515,7 @@ class JanelaBase():
             width=self.__comprimentoBotao,
             command=self.__arredondar
         )
-
-
+    
         # Posicionando os botões considerando um grid
         # com 6 linhas e 4 colunas
         self.botao1               .grid(row=4, column=0)
@@ -594,6 +593,18 @@ class JanelaBase():
 
         # Limpando caixa de texto
         self.conteudoCaixa.set('')
+
+        return None
+
+    def __apagar(
+        self : object,
+        event: 'Event' = None
+        ):
+        "Apagar apenas o ultimo caractere pra eu nao ter que digitar de novo a funçao inteira a cada erro"
+
+        self.expressao = self.conteudoCaixa.get()
+        for i in self.expressao:
+            self.conteudoCaixa.set(self.expressao[:-1])
 
         return None
     
@@ -693,7 +704,8 @@ class JanelaBase():
         self.expressao=int(self.expressao)
         nova=radians(self.expressao)
         seno=sin(nova)
-        self.conteudoCaixa.set(round(seno,1))
+        string=str(seno)
+        self.conteudoCaixa.set(string)
         return None
 
     # Método Privado
@@ -705,7 +717,8 @@ class JanelaBase():
         self.expressao=int(self.expressao)
         nova=radians(self.expressao)
         cose=cos(nova)
-        self.conteudoCaixa.set(round(cose,1))
+        string=str(cose)
+        self.conteudoCaixa.set(string)
         return None
 
     # Método Privado
@@ -717,7 +730,8 @@ class JanelaBase():
         self.expressao=int(self.expressao)
         nova=radians(self.expressao)
         tang=tan(nova)
-        self.conteudoCaixa.set((tang,1))
+        string=str(tang)
+        self.conteudoCaixa.set(string)
         return None
 
     # Método Privado
@@ -726,9 +740,9 @@ class JanelaBase():
         event: 'Event' = None
         ):
         'arredonda o valor'
-        self.expressao=str(self.conteudoCaixa)
-        copia2=int(self.expressao)
-        self.conteudoCaixa.set(round(copia2,1))
+        string = self.conteudoCaixa.get()
+        self.expressao=float(string)
+        self.conteudoCaixa.set(round(self.expressao,1))
         return None
 
     # Método Privado
