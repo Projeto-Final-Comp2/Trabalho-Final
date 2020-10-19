@@ -806,7 +806,7 @@ class JanelaBase():
         # Tratando possíveis erros
         try:
             # Ajustando os simbolos de multiplicação e divisão
-            expressao = self.expressao.replace('x','*').replace('÷','/').replace('π','pi').replace('I','1')
+            expressao = self.expressao.replace('x','*').replace('÷','/').replace('π','pi')
 
             # Avaliando a expressão
             resultado = eval(expressao)
