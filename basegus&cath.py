@@ -129,7 +129,7 @@ class JanelaBase():
             bg=self.__corBotaoBg,          # Cor de fundo do botão
             height=self.__alturaBotao,     # Altura do botão
             width=self.__comprimentoBotao, # Comprimento do botão
-            command=lambda:self.__adicionaValor(1),
+            command=lambda:self.__adicionaValor(1)
 #funçao ĺambda: n preciso dar nome
             # Função a ser executada ao clicar no botão
         )
@@ -605,7 +605,8 @@ class JanelaBase():
         self.expressao = self.conteudoCaixa.get()
         for i in self.expressao:
             self.conteudoCaixa.set(self.expressao[:-1])
-
+        self.expressao=self.expressao[:-1]
+            
         return None
     
     # Método Privado
@@ -683,14 +684,18 @@ class JanelaBase():
         num = (1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1)
         rom = ('M', 'CM', 'D', 'CD','C', 'XC','L','XL','X','IX','V','IV','I')
         resultado = []
-        self.expressao=int(self.expressao)
-        if 0 < self.expressao < 4000:
+        #self.expressao=int(self.expressao)
+        if '.' in self.expressao:
+            self.conteudoCaixa.set('Use número um inteiro')
+        elif 0 < int(self.expressao) < 4000:
             for i in range(len(num)):
                 numero = int(self.expressao) / num[i]
                 resultado.append(rom[i] * int(numero))
+                self.expressao=int(self.expressao)
                 self.expressao -= num[i] * int(numero)
             final = ''.join(resultado)
             self.conteudoCaixa.set(final)
+            self.expressao=str(final)    
         else:
             self.conteudoCaixa.set('O número precisa ser <4000')
         return None
@@ -701,11 +706,11 @@ class JanelaBase():
         event: 'Event' = None
         ):
         'transforma o grau dado em radianos e devolve o sin'
-        self.expressao=int(self.expressao)
+        self.expressao=float(self.expressao)
         nova=radians(self.expressao)
-        seno=sin(nova)
-        string=str(seno)
-        self.conteudoCaixa.set(string)
+        seno=sin(radians(self.expressao))
+        self.expressao=string=str(seno)
+        self.conteudoCaixa.set((self.expressao))
         return None
 
     # Método Privado
@@ -717,8 +722,8 @@ class JanelaBase():
         self.expressao=int(self.expressao)
         nova=radians(self.expressao)
         cose=cos(nova)
-        string=str(cose)
-        self.conteudoCaixa.set(string)
+        self.expressao=str(cose)
+        self.conteudoCaixa.set(self.expressao)
         return None
 
     # Método Privado
@@ -730,8 +735,8 @@ class JanelaBase():
         self.expressao=int(self.expressao)
         nova=radians(self.expressao)
         tang=tan(nova)
-        string=str(tang)
-        self.conteudoCaixa.set(string)
+        self.expressao=str(tang)
+        self.conteudoCaixa.set(self.expressao)
         return None
 
     # Método Privado
@@ -742,7 +747,9 @@ class JanelaBase():
         'arredonda o valor'
         string = self.conteudoCaixa.get()
         self.expressao=float(string)
-        self.conteudoCaixa.set(round(self.expressao,1))
+        arredondado=round(self.expressao,1)
+        self.expressao=str(arredondado)
+        self.conteudoCaixa.set(self.expressao)
         return None
 
     # Método Privado
@@ -752,6 +759,7 @@ class JanelaBase():
         ):
         'devolve o fatorial do numero'
         self.conteudoCaixa.set(factorial(int(self.expressao)))
+        self.expressao=str(factorial(int(self.expressao)))
         return None
 
     # Método Privado
@@ -761,6 +769,7 @@ class JanelaBase():
         ):
         'devolve o log do numero'
         self.conteudoCaixa.set(log(int(self.expressao)))
+        self.expressao=str(log(int(self.expressao)))
         return None
 
     # Método Privado
@@ -770,6 +779,7 @@ class JanelaBase():
         ):
         'transforma o grau dado em radianos'
         self.conteudoCaixa.set(radians(int(self.expressao)))
+        self.expressao=str(radians(int(self.expressao)))
         return None
 
     # Método Privado
@@ -779,6 +789,7 @@ class JanelaBase():
         ):
         'transforma o radianos dado em graus'
         self.conteudoCaixa.set(round(degrees(float(self.expressao))))
+        self.expressao=str(degrees(int(self.expressao)))
         return None
     
     # Método Privado
@@ -795,7 +806,7 @@ class JanelaBase():
         # Tratando possíveis erros
         try:
             # Ajustando os simbolos de multiplicação e divisão
-            expressao = self.expressao.replace('x','*').replace('÷','/').replace('π','pi')
+            expressao = self.expressao.replace('x','*').replace('÷','/').replace('π','pi').replace('I','1')
 
             # Avaliando a expressão
             resultado = eval(expressao)
