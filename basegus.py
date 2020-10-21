@@ -14,11 +14,9 @@ Data da entrega: 22/10 (valendo 100% da nota)
                  29/10 (valendo  80% da nota)
 ---------------------------------------------------------
 Turma: EB? (4: Tarde, 5: Manha)
-
 Grupo: 1.
        2.
        3.
-
 Nota :
 ---------------------------------------------------------
 '''
@@ -38,9 +36,6 @@ class JanelaBase():
 
     # Importando um pacote interno do python
     import sys
-
-    ## Definindo variável booleana shift
-    #shift=False
 
     # Listando todos os atributos e método públicos
     __all__ = [
@@ -118,9 +113,9 @@ class JanelaBase():
         )
 
         # Posicionando a caixa de texto considerando a
-        # mescalgem de 4 colunas de espaço, tendo 70 px
+        # mescalgem de 3 colunas de espaço, tendo 10 px
         # de distância entre a borda desse espaço e a caixa
-        self.caixaDaEquacao.grid(columnspan=5, ipadx=10)
+        self.caixaDaEquacao.grid(columnspan=3, ipadx=10)
 
         # Definindo um valor inicial/padrão para a caixa
         # de texto
@@ -134,7 +129,7 @@ class JanelaBase():
             bg=self.__corBotaoBg,          # Cor de fundo do botão
             height=self.__alturaBotao,     # Altura do botão
             width=self.__comprimentoBotao, # Comprimento do botão
-            command=lambda:self.__adicionaValor(1),
+            command=lambda:self.__adicionaValor(1)
 #funçao ĺambda: n preciso dar nome
             # Função a ser executada ao clicar no botão
         )
@@ -243,7 +238,7 @@ class JanelaBase():
             self.janela,
             text='+',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg="snow",
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
             command=lambda:self.__adicionaValor('+')
@@ -254,7 +249,7 @@ class JanelaBase():
             self.janela,
             text='-',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg="snow",
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
             command=lambda:self.__adicionaValor('-')
@@ -265,7 +260,7 @@ class JanelaBase():
             self.janela,
             text='x',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg="snow",
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
             command=lambda:self.__adicionaValor('x')
@@ -276,7 +271,7 @@ class JanelaBase():
             self.janela,
             text='÷',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg="snow",
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
             command=lambda:self.__adicionaValor('÷')
@@ -287,7 +282,7 @@ class JanelaBase():
             self.janela,
             text='.',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg="lemon chiffon",
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
             command=lambda:self.__adicionaValor('.')
@@ -298,7 +293,7 @@ class JanelaBase():
             self.janela,
             text='=',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg="snow",
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
             command=self.__resolveExpressao
@@ -309,22 +304,23 @@ class JanelaBase():
             self.janela,
             text='C',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg="misty rose",
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
             command=self.__limpar
         )
 
         #self.botaoShift = Button(
-        #    self.janela,                 
-        #    text='Shift',                    
-        #    fg=self.__corBotaoTexto,        
-        #    bg=self.__corBotaoBg,          
-        #    height=self.__alturaBotao,     
-        #    width=self.__comprimentoBotao, 
-        #    command=self.__shift
+            #self.janela,                 
+            #text='Shift',                    
+            #fg=self.__corBotaoTexto,        
+            #bg=self.__corBotaoBg,          
+            #height=self.__alturaBotao,     
+            #width=self.__comprimentoBotao, 
+            #command=self.__,
         #)
 
+        # Criando um botão funcional com o texto 'π'
         self.botaoPi = Button(
             self.janela,
             text='π',
@@ -334,7 +330,8 @@ class JanelaBase():
             width=self.__comprimentoBotao,
             command=lambda:self.__adicionaValor('π')
         )
-        
+
+        # Criando um botão funcional com o texto 'e'
         self.botaoEulerNumber = Button(
             self.janela,
             text='e',
@@ -344,127 +341,181 @@ class JanelaBase():
             width=self.__comprimentoBotao,
             command=lambda:self.__adicionaValor('e')
         )
-        
+
+        # Criando um botão funcional com o texto 'n!'
         self.botaoFatorial = Button(
             self.janela,
             text='n!',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg="snow",
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
-            command=lambda:self.__adicionaValor('factorial(')
+            command=self.__fatorial
         )
-          
+
+        # Criando um botão funcional com o texto 'Ln' 
         self.botaoLn = Button(
             self.janela,
             text='Ln',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg="snow",
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
-            command=lambda:self.__adicionaValor('log(')
+            command=self.__log
         )
-          
+
+        # Criando um botão funcional com o texto 'Rad' 
         self.botaoConverteRadianos = Button(
             self.janela,
             text='Rad',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg="blanched almond",
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
-            command=lambda:self.__adicionaValor('radians(')
+            command=self.__rad
         )
-          
+        # Criando um botão funcional com o texto 'Graus'  
         self.botaoConverteGraus = Button(
             self.janela,
             text='Graus',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg="blanched almond",
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
-            command=lambda:self.__adicionaValor('degrees(')
+            command=self.__deg
         )
-          
+        # Criando um botão funcional com o texto '('  
         self.botaoParenteses1 = Button(
             self.janela,
             text='(',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg="lemon chiffon",
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
             command=lambda:self.__adicionaValor('(')
         )
 
+        # Criando um botão funcional com o texto ')'
         self.botaoParenteses2 = Button(
             self.janela,
             text=')',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg="lemon chiffon",
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
             command=lambda:self.__adicionaValor(')')
         )
 
+        # Criando um botão funcional com o texto 'Sin'
         self.botaoSin = Button(
             self.janela,
             text='Sin',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg="navajo white",
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
-            command=lambda:self.__adicionaValor('sin(grau)')
+            command=self.__sin
         )
 
+        # Criando um botão funcional com o texto 'Cos'
         self.botaoCos = Button(
             self.janela,
             text='Cos',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg="navajo white",
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
-            command=lambda:self.__adicionaValor('cos(radians(')
+            command=self.__cos
         )
 
+        # Criando um botão funcional com o texto 'Tan'
         self.botaoTan = Button(
             self.janela,
             text='Tan',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg="navajo white",
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
-            command=lambda:self.__adicionaValor('tan(radians(')
+            command=self.__tan
         )
+
+        # Criando um botão funcional com o texto 'xʸ'
         self.botaoElevado = Button(
             self.janela,
             text='xʸ',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg="snow",
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
             command=lambda:self.__adicionaValor('**') 
         )
 
+        # Criando um botão funcional com o texto 'Del'
         self.botaoApagar = Button(
             self.janela,
             text='Del',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg="misty rose",
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
-            command=self.__limpar
+            command=self.__apagar
         )
 
+        # Criando um botão funcional com o texto '?'
         self.botaoManual = Button(
             self.janela,
             text='?',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg="gold",
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
             command=self.__manual
         )
 
+        # Criando um botão funcional com o texto 'Med'
+        self.botaoMedia = Button(
+            self.janela,
+            text='Med',
+            fg=self.__corBotaoTexto,
+            bg="azure",
+            height=self.__alturaBotao,
+            width=self.__comprimentoBotao,
+            command=self.__media
+        )
 
+        # Criando um botão funcional com o texto 'X/Y'
+        self.botaoFracao = Button(
+            self.janela,
+            text='X/Y',
+            fg=self.__corBotaoTexto,
+            bg="blanched almond",
+            height=self.__alturaBotao,
+            width=self.__comprimentoBotao,
+            command=self.__fracao
+        )
+
+        # Criando um botão funcional com o texto 'Rom'
+        self.botaoRomanos = Button(
+            self.janela,
+            text='Rom',
+            fg=self.__corBotaoTexto,
+            bg="blanched almond",
+            height=self.__alturaBotao,
+            width=self.__comprimentoBotao,
+            command=self.__romanos
+        )
+
+        # Criando um botão funcional com o texto '~='
+        self.arredondar = Button(
+            self.janela,
+            text='~=',
+            fg=self.__corBotaoTexto,
+            bg="blanched almond",
+            height=self.__alturaBotao,
+            width=self.__comprimentoBotao,
+            command=self.__arredondar
+        )
+    
         # Posicionando os botões considerando um grid
         # com 6 linhas e 4 colunas
         self.botao1               .grid(row=4, column=0)
@@ -476,16 +527,14 @@ class JanelaBase():
         self.botao7               .grid(row=2, column=0)
         self.botao8               .grid(row=2, column=1)
         self.botao9               .grid(row=2, column=2)
-        self.botao0               .grid(row=5, column=0)
-        #shift=True
-        #if shift==False:
+        self.botao0               .grid(row=5, column=1)
         self.botaoPlus            .grid(row=2, column=3)
         self.botaoMinus           .grid(row=3, column=3)
         self.botaoMultiply        .grid(row=4, column=3)
         self.botaoDivide          .grid(row=5, column=3)
         self.botaoEqual           .grid(row=5, column=2)
         self.botaoClear           .grid(row=6, column=3)
-        self.botaoDecimal         .grid(row=5, column=1)
+        self.botaoDecimal         .grid(row=5, column=0)
         self.botaoParenteses1     .grid(row=6, column=0)
         self.botaoParenteses2     .grid(row=6, column=1)
         self.botaoSin             .grid(row=2, column=4)
@@ -493,15 +542,17 @@ class JanelaBase():
         self.botaoTan             .grid(row=4, column=4)
         self.botaoElevado         .grid(row=6, column=2)
         self.botaoApagar          .grid(row=6, column=4)
-        self.botaoManual          .grid(row=7, column=4)
+        self.botaoManual          .grid(row=8, column=3)
         self.botaoPi              .grid(row=7, column=2)
         self.botaoEulerNumber     .grid(row=7, column=3)
         self.botaoFatorial        .grid(row=7, column=0)
         self.botaoLn              .grid(row=7, column=1)
-        self.botaoConverteRadianos.grid(row=8, column=1)
-        self.botaoConverteGraus   .grid(row=8, column=0)
-        self.botaoShift           .grid(row=7, column=5)
-       
+        self.botaoConverteRadianos.grid(row=7, column=4)
+        self.botaoConverteGraus   .grid(row=8, column=4)
+        self.botaoMedia           .grid(row=5, column=4)
+        self.botaoFracao          .grid(row=8, column=0)
+        self.botaoRomanos         .grid(row=8, column=1)
+        self.arredondar           .grid(row=8, column=2)
         return None
 
     # Método Privado
@@ -544,23 +595,19 @@ class JanelaBase():
         self.conteudoCaixa.set('')
 
         return None
-    
-     #def __shift(
-     #   self : object,
-     #   event: 'Event' = None
-     #   ):
-     #   "Alternando entre modo principal e alternativo da calculadora"
-     #   shift=False
-     #   # Alterando a variável Shift
-     #   if shift==False:
-     #       shift=True
-     #       
-     #   else:
-     #       shift=False
-     #   self.destroy()
-     #   self.__init__()
-     #   
-     #   return None
+
+    def __apagar(
+        self : object,
+        event: 'Event' = None
+        ):
+        "Apagar apenas o ultimo caractere pra eu nao ter que digitar de novo a funçao inteira a cada erro"
+
+        self.expressao = self.conteudoCaixa.get()
+        for i in self.expressao:
+            self.conteudoCaixa.set(self.expressao[:-1])
+        self.expressao=self.expressao[:-1]
+            
+        return None
     
     # Método Privado
     def __perguntarPraSair(
@@ -585,7 +632,8 @@ class JanelaBase():
             pass
 
         return None
-    
+
+    # Método Privado
     def __manual(
         self : object,
         event: 'Event' = None
@@ -595,8 +643,153 @@ class JanelaBase():
         # Abrindo janela com o diálogo
         decisao = messagebox.showinfo(
             'Manual',
-            'Olá! Dúvidas? Veja se isso ajuda:\n\nIsso: Assim\nAquilo: Assado\nFulano: De tal\nLog: Por a base e o logaritmando'
+            'Olá! Dúvidas? Veja se isso ajuda:\n\nLog: Por a base e o logaritmando\n'
         )
+        return None
+
+    # Método Privado
+    def __media(
+        self : object,
+        event: 'Event' = None
+        ):
+        'Faz media da soma de numeros'
+        nova=[]
+        listaemstr = str(self.expressao).split('+')
+        for i in listaemstr:
+            nova.append(int(i))
+        self.conteudoCaixa.set(sum(nova)/len(nova)) 
+        return None
+
+    # Método Privado
+    def __fracao(
+        self : object,
+        event: 'Event' = None
+        ):
+        'Faz o resultado de uma divisão aparecer no formato de fração, apenas simplificado'
+        nova=[]
+        listaemstr = str(self.expressao).split('÷')
+        for i in listaemstr:
+            nova.append(int(i))
+        divisor=gcd(nova[0],nova[1])
+        fracao=int(nova[0]/divisor),'/',int(nova[1]/divisor)
+        self.conteudoCaixa.set(fracao)
+        return None
+
+    # Método Privado
+    def __romanos(
+        self : object,
+        event: 'Event' = None
+        ):
+        'Transforma os numeros em numeros romanos'
+        num = (1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1)
+        rom = ('M', 'CM', 'D', 'CD','C', 'XC','L','XL','X','IX','V','IV','I')
+        resultado = []
+        #self.expressao=int(self.expressao)
+        if '.' in self.expressao:
+            self.conteudoCaixa.set('Use número um inteiro')
+        elif 0 < int(self.expressao) < 4000:
+            for i in range(len(num)):
+                numero = int(self.expressao) / num[i]
+                resultado.append(rom[i] * int(numero))
+                self.expressao=int(self.expressao)
+                self.expressao -= num[i] * int(numero)
+            final = ''.join(resultado)
+            self.conteudoCaixa.set(final)
+            self.expressao=str(final)    
+        else:
+            self.conteudoCaixa.set('O número precisa ser <4000')
+        return None
+
+    # Método Privado
+    def __sin(
+        self : object,
+        event: 'Event' = None
+        ):
+        'transforma o grau dado em radianos e devolve o sin'
+        self.expressao=float(self.expressao)
+        nova=radians(self.expressao)
+        seno=sin(radians(self.expressao))
+        self.expressao=string=str(seno)
+        self.conteudoCaixa.set((self.expressao))
+        return None
+
+    # Método Privado
+    def __cos(
+        self : object,
+        event: 'Event' = None
+        ):
+        'transforma o grau dado em radianos e devolve o cos'
+        self.expressao=int(self.expressao)
+        nova=radians(self.expressao)
+        cose=cos(nova)
+        self.expressao=str(cose)
+        self.conteudoCaixa.set(self.expressao)
+        return None
+
+    # Método Privado
+    def __tan(
+        self : object,
+        event: 'Event' = None
+        ):
+        'transforma o grau dado em radianos e devolve o tan'
+        self.expressao=int(self.expressao)
+        nova=radians(self.expressao)
+        tang=tan(nova)
+        self.expressao=str(tang)
+        self.conteudoCaixa.set(self.expressao)
+        return None
+
+    # Método Privado
+    def __arredondar(
+        self : object,
+        event: 'Event' = None
+        ):
+        'arredonda o valor'
+        string = self.conteudoCaixa.get()
+        self.expressao=float(string)
+        arredondado=round(self.expressao,1)
+        self.expressao=str(arredondado)
+        self.conteudoCaixa.set(self.expressao)
+        return None
+
+    # Método Privado
+    def __fatorial(
+        self : object,
+        event: 'Event' = None
+        ):
+        'devolve o fatorial do numero'
+        self.conteudoCaixa.set(factorial(int(self.expressao)))
+        self.expressao=str(factorial(int(self.expressao)))
+        return None
+
+    # Método Privado
+    def __log(
+        self : object,
+        event: 'Event' = None
+        ):
+        'devolve o log do numero'
+        self.conteudoCaixa.set(log(int(self.expressao)))
+        self.expressao=str(log(int(self.expressao)))
+        return None
+
+    # Método Privado
+    def __rad(
+        self : object,
+        event: 'Event' = None
+        ):
+        'transforma o grau dado em radianos'
+        self.conteudoCaixa.set(radians(int(self.expressao)))
+        self.expressao=str(radians(int(self.expressao)))
+        return None
+
+    # Método Privado
+    def __deg(
+        self : object,
+        event: 'Event' = None
+        ):
+        'transforma o radianos dado em graus'
+        self.conteudoCaixa.set(round(degrees(float(self.expressao))))
+        self.expressao=str(degrees(int(self.expressao)))
         return None
     
     # Método Privado
@@ -613,9 +806,7 @@ class JanelaBase():
         # Tratando possíveis erros
         try:
             # Ajustando os simbolos de multiplicação e divisão
-            expressao = self.expressao.replace('x','*').replace('÷','/')
-            expressao = self.expressao.replace('sin','sin(radians)')
-            expressao = self.expressao.replace('π','pi')
+            expressao = self.expressao.replace('x','*').replace('÷','/').replace('π','pi')
 
             # Avaliando a expressão
             resultado = eval(expressao)
@@ -677,11 +868,11 @@ class JanelaBase():
 
     # Método Público    
     def rodandoJanela(
-        comprimento     : [int,float] = 220,
-        altura          : [int,float] = 220,
+        comprimento     : [int,float] = 310,
+        altura          : [int,float] = 230,
         titulo          : str         = 'Calculadora',
-        corFundo        : str         = 'light blue',
-        corFundoBotao   : str         = 'pink',
+        corFundo        : str         = 'PaleVioletRed1',
+        corFundoBotao   : str         = 'PaleTurquoise1',
         corTextoBotao   : str         = 'black',
         alturaBotao     : [int,float] = 1,
         comprimentoBotao: [int,float] = 4,
