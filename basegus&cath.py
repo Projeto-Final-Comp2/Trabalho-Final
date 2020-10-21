@@ -13,10 +13,9 @@ Projeto        : Calculadora
 Data da entrega: 22/10 (valendo 100% da nota)
                  29/10 (valendo  80% da nota)
 ---------------------------------------------------------
-Turma: EB? (4: Tarde, 5: Manha)
-Grupo: 1.
-       2.
-       3.
+Turma: EB5 (4: Tarde, 5: Manha)
+Grupo: 1. Gustavo Darmont
+       2. Maria Catharina Bueno
 Nota :
 ---------------------------------------------------------
 '''
@@ -342,94 +341,6 @@ class JanelaBase():
             width=self.__comprimentoBotao,
             command=self.__limpar
         )
-         
-        # Criando um botão funcional com o texto 'Sin'
-        self.botaoSin = Button(
-            self.janela,
-            text='Sin',
-            fg=self.__corBotaoTexto,
-            bg='pale violet red',
-            height=self.__alturaBotao,
-            width=self.__comprimentoBotao,
-            command=self.__sin
-        )
-
-        # Criando um botão funcional com o texto 'Cos'
-        self.botaoCos = Button(
-            self.janela,
-            text='Cos',
-            fg=self.__corBotaoTexto,
-            bg='pale violet red',
-            height=self.__alturaBotao,
-            width=self.__comprimentoBotao,
-            command=self.__cos
-        )
-
-        # Criando um botão funcional com o texto 'Tan'
-        self.botaoTan = Button(
-            self.janela,
-            text='Tan',
-            fg=self.__corBotaoTexto,
-            bg='pale violet red',
-            height=self.__alturaBotao,
-            width=self.__comprimentoBotao,
-            command=self.__tan
-        )
-
-        # Criando um botão funcional com o texto 'Rad' 
-        self.botaoConverteRadianos = Button(
-            self.janela,
-            text='Rad',
-            fg=self.__corBotaoTexto,
-            bg='pale violet red',
-            height=self.__alturaBotao,
-            width=self.__comprimentoBotao,
-            command=self.__rad
-        )
-
-        # Criando um botão funcional com o texto 'Graus'  
-        self.botaoConverteGraus = Button(
-            self.janela,
-            text='Graus',
-            fg=self.__corBotaoTexto,
-            bg='pale violet red',
-            height=self.__alturaBotao,
-            width=self.__comprimentoBotao,
-            command=self.__deg
-        )
-
-        # Criando um botão funcional com o texto 'Del'
-        self.botaoDel = Button(
-            self.janela,
-            text='Del',
-            fg=self.__corBotaoTexto,
-            bg='pale violet red',
-            height=self.__alturaBotao,
-            width=self.__comprimentoBotao,
-            command=self.__del
-        )
-
-        # Criando um botão funcional com o texto 'Med'
-        self.botaoMedia = Button(
-            self.janela,
-            text='Med',
-            fg=self.__corBotaoTexto,
-            bg='pale violet red',
-            height=self.__alturaBotao,
-            width=self.__comprimentoBotao,
-            command=self.__media
-        )
-
-        # Criando um botão funcional com o texto 'Rom'
-        self.botaoRomanos = Button(
-            self.janela,
-            text='Rom',
-            fg=self.__corBotaoTexto,
-            bg='pale violet red',
-            height=self.__alturaBotao,
-            width=self.__comprimentoBotao,
-            command=self.__romanos
-        )
 
         # Criando um botão funcional com o texto 'n!'
         self.botaoFatorial = Button(
@@ -529,9 +440,97 @@ class JanelaBase():
             width=self.__comprimentoBotao,
             command=self.__manual
         )
+
+        # Criando um botão funcional com o texto 'Sin'
+        self.botaoSin = Button(
+            self.janela,
+            text='Sin',
+            fg=self.__corBotaoTexto,
+            bg='pale violet red',
+            height=self.__alturaBotao,
+            width=self.__comprimentoBotao,
+            command=self.__sin
+        )
+
+        # Criando um botão funcional com o texto 'Cos'
+        self.botaoCos = Button(
+            self.janela,
+            text='Cos',
+            fg=self.__corBotaoTexto,
+            bg='pale violet red',
+            height=self.__alturaBotao,
+            width=self.__comprimentoBotao,
+            command=self.__cos
+        )
+
+        # Criando um botão funcional com o texto 'Tan'
+        self.botaoTan = Button(
+            self.janela,
+            text='Tan',
+            fg=self.__corBotaoTexto,
+            bg='pale violet red',
+            height=self.__alturaBotao,
+            width=self.__comprimentoBotao,
+            command=self.__tan
+        )
+
+        # Criando um botão funcional com o texto 'Rad' 
+        self.botaoConverteRadianos = Button(
+            self.janela,
+            text='Rad',
+            fg=self.__corBotaoTexto,
+            bg='pale violet red',
+            height=self.__alturaBotao,
+            width=self.__comprimentoBotao,
+            command=self.__rad
+        )
+
+        # Criando um botão funcional com o texto 'Graus'  
+        self.botaoConverteGraus = Button(
+            self.janela,
+            text='Graus',
+            fg=self.__corBotaoTexto,
+            bg='pale violet red',
+            height=self.__alturaBotao,
+            width=self.__comprimentoBotao,
+            command=self.__deg
+        )
+
+        # Criando um botão funcional com o texto 'Del'
+        self.botaoDel = Button(
+            self.janela,
+            text='Del',
+            fg=self.__corBotaoTexto,
+            bg='pale violet red',
+            height=self.__alturaBotao,
+            width=self.__comprimentoBotao,
+            command=self.__del
+        )
+
+        # Criando um botão funcional com o texto 'Med'
+        self.botaoMedia = Button(
+            self.janela,
+            text='Med',
+            fg=self.__corBotaoTexto,
+            bg='pale violet red',
+            height=self.__alturaBotao,
+            width=self.__comprimentoBotao,
+            command=self.__media
+        )
+
+        # Criando um botão funcional com o texto 'Rom'
+        self.botaoRomanos = Button(
+            self.janela,
+            text='Rom',
+            fg=self.__corBotaoTexto,
+            bg='pale violet red',
+            height=self.__alturaBotao,
+            width=self.__comprimentoBotao,
+            command=self.__romanos
+        )
         
         # Posicionando os botões considerando um grid
-        # com 8 linhas e 5 colunas
+        # com 9 linhas e 5 colunas
         # Seguindo a mesma ordem em que os botoẽs foram definidos
         # e condizendo com a proximidade entre eles no layout
 
@@ -556,14 +555,6 @@ class JanelaBase():
         self.botaoParenteses2     .grid(row=6, column=1)
         self.botaoElevado         .grid(row=6, column=2)
         self.botaoLimpar          .grid(row=6, column=3)
-        self.botaoSin             .grid(row=0, column=4)
-        self.botaoCos             .grid(row=2, column=4)
-        self.botaoTan             .grid(row=3, column=4)
-        self.botaoConverteRadianos.grid(row=4, column=4)
-        self.botaoConverteGraus   .grid(row=5, column=4)
-        self.botaoDel             .grid(row=6, column=4)
-        self.botaoMedia           .grid(row=7, column=4)
-        self.botaoRomanos         .grid(row=8, column=4)
         self.botaoFatorial        .grid(row=7, column=0)
         self.botaoLn              .grid(row=7, column=1)
         self.botaoPi              .grid(row=7, column=2)
@@ -572,12 +563,23 @@ class JanelaBase():
         self.botaoRaiz            .grid(row=8, column=1)
         self.botaoArredondar      .grid(row=8, column=2)
         self.botaoDeriv           .grid(row=8, column=3)
-        self.botaoManual          .grid(row=9, column=0)
+        self.botaoManual          .grid(row=0, column=4)
+        self.botaoSin             .grid(row=2, column=4)
+        self.botaoCos             .grid(row=3, column=4)
+        self.botaoTan             .grid(row=4, column=4)
+        self.botaoConverteRadianos.grid(row=5, column=4)
+        self.botaoConverteGraus   .grid(row=6, column=4)
+        self.botaoDel             .grid(row=7, column=4)
+        self.botaoMedia           .grid(row=8, column=4)
+        self.botaoRomanos         .grid(row=9, column=4)
             
         return None
 
-    #Definição dos métodos dos botões, como as funções de cada um vão funcionar
-    
+    # Definição dos métodos dos botões, como as funções de cada um vão funcionar
+    # Seguindo a mesma ordem em que os botoẽs foram definidos, condizendo com a
+    # proximidade entre eles no layout e a ordem em que ficou anotado o posicionamento
+    # considerando um grid com 9 linhas e 5 colunas
+
     # Método Privado
     def __adicionaValor(
         self : object,
@@ -592,300 +594,6 @@ class JanelaBase():
         self.conteudoCaixa.set(self.expressao)
 
         return None
-
-    # Método Privado
-    def __fecharJanela(
-        self: object
-        ):
-        'Fechando janela'
-
-        # Excutando fechamento
-        self.janela.destroy()
-
-        return None
-
-    # Método Privado
-    def __limpar(
-        self : object,
-        event: 'Event' = None
-        ):
-        "Limpando entrada de texto e variavel 'expressao'"
-
-        # Limpando expressao
-        self.expressao = ''
-
-        # Limpando caixa de texto
-        self.conteudoCaixa.set('')
-
-        return None
-
-    def __del(
-        self : object,
-        event: 'Event' = None
-        ):
-        "Apagar apenas o último caractere para não"
-        "ter que apagar a função inteira a cada erro"
-
-        self.expressao = self.conteudoCaixa.get()
-        for i in self.expressao:
-            self.conteudoCaixa.set(self.expressao[:-1])
-        self.expressao=self.expressao[:-1]
-            
-        return None
-    
-    # Método Privado
-    def __perguntarPraSair(
-        self : object,
-        event: 'Event' = None
-        ):
-        'Exibe uma janela perguntando se deseja fechar a janela'
-
-        # Abrindo janela com o diálogo
-        decisao = messagebox.askyesno(
-            'Fechar calculadora',
-            'Acabaram os cálculos por hoje?'
-        )
-
-        # Verificando decisão
-        if decisao == True:
-            # Fechando a janela
-            self.__fecharJanela()
-
-        else:
-            # Faça nada
-            pass
-
-        return None
-
-    # Método Privado
-    def __manual(
-        self : object,
-        event: 'Event' = None
-        ):
-        'Exibe uma janela explicando as funções da calculadora'
-
-        # Abrindo janela com o diálogo
-        decisao = messagebox.showinfo(
-            'Manual',
-            'Olá! Dúvidas? Veja se isso ajuda:\n\nLog: Por a base e o logaritmando\n'
-        )
-        return None
-
-    # Método Privado
-    def __media(
-        self : object,
-        event: 'Event' = None
-        ):
-        'Faz media da soma de numeros'
-        #Usando float para transformar em números, pois float funciona para int
-        #mas int não funciona se o usuário decidir mexer com float
-        nova=[]
-        listaemstr = str(self.expressao).split('+')
-        for i in listaemstr:
-            nova.append(float(i))
-        self.conteudoCaixa.set(sum(nova)/len(nova)) 
-        return None
-
-    # Método Privado
-    def __fracao(
-        self : object,
-        event: 'Event' = None
-        ):
-        'Faz o resultado de uma divisão aparecer no formato de fração,'
-        'apenas simplifica usando o maior denominador em comum'
-        # Usando float para transformar em números, pois float funciona para int
-        # mas int não funciona se o usuário decidir mexer com float
-        nova=[]
-        listaemstr = str(self.expressao).split('÷')
-        for i in listaemstr:
-            nova.append(float(i))
-        divisor=gcd(nova[0],nova[1])
-        fracao=float(nova[0]/divisor),'/',float(nova[1]/divisor)
-        self.conteudoCaixa.set(fracao)
-        return None
-
-    # Método Privado
-    def __romanos(
-        self : object,
-        event: 'Event' = None
-        ):
-        'Transforma os numeros em numeros romanos'
-        # Usando apenas int, pois a função de números romanos nao irá trabalhar com float
-        num = (1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1)
-        rom = ('M', 'CM', 'D', 'CD','C', 'XC','L','XL','X','IX','V','IV','I')
-        resultado = []
-        # Caso o usuário queira transformar um float
-        if '.' in self.expressao:
-            self.conteudoCaixa.set('Não esqueça de usar um número inteiro')
-        elif 0 < int(self.expressao) < 4000:
-            for i in range(len(num)):
-                numero = int(self.expressao) / num[i]
-                resultado.append(rom[i] * int(numero))
-                self.expressao=int(self.expressao)
-                self.expressao -= num[i] * int(numero)
-            final = ''.join(resultado)
-            self.conteudoCaixa.set(final)
-            self.expressao=str(final)    
-        else:
-            self.conteudoCaixa.set('Aí não, né! Só posso com número <4000')
-        return None
-
-    # Método Privado
-    def __sin(
-        self : object,
-        event: 'Event' = None
-        ):
-        'Transforma o grau dado em radianos e devolve o sin'
-        # Usando float para transformar em números, pois float funciona para int
-        # mas int não funciona se o usuário decidir mexer com float
-        self.expressao=float(self.expressao)
-        nova=radians(self.expressao)
-        seno=sin(radians(self.expressao))
-        self.expressao=str(seno)
-        self.conteudoCaixa.set((self.expressao))
-        return None
-
-    # Método Privado
-    def __cos(
-        self : object,
-        event: 'Event' = None
-        ):
-        'Transforma o grau dado em radianos e devolve o cos'
-        # Usando float para transformar em números, pois float funciona para int
-        # mas int não funciona se o usuário decidir mexer com float
-        self.expressao=float(self.expressao)
-        nova=radians(self.expressao)
-        cose=cos(nova)
-        self.expressao=str(cose)
-        self.conteudoCaixa.set(self.expressao)
-        return None
-
-    # Método Privado
-    def __tan(
-        self : object,
-        event: 'Event' = None
-        ):
-        'Transforma o grau dado em radianos e devolve a tan'
-        # Usando float para transformar em números, pois float funciona para int
-        # mas int não funciona se o usuário decidir mexer com float
-        self.expressao=float(self.expressao)
-        nova=radians(self.expressao)
-        tang=tan(nova)
-        self.expressao=str(tang)
-        self.conteudoCaixa.set(self.expressao)
-        return None
-
-    # Método Privado
-    def __arredondar(
-        self : object,
-        event: 'Event' = None
-        ):
-        'Arredonda o valor'
-        # Usando float para transformar em números, pois float funciona para int
-        # mas int não funciona se o usuário decidir mexer com float
-        
-        # Condiçao para caso o usuario queira arredondar o resultado decimal de uma
-        # transformacao de grau pra radiano, uma vez que essa funçao fornece 2 resultados
-        if 'ou' in self.conteudoCaixa.get():
-            string = self.conteudoCaixa.get()
-            partida=string.split(' ')
-            numero=partida[0]
-            final=numero[1:-1]
-            self.expressao=float(final)
-            arredondado=round(self.expressao,1)
-            self.expressao=str(arredondado)
-            self.conteudoCaixa.set(self.expressao)
-        # Qualquer outro arredondamento
-        else:
-            string = self.conteudoCaixa.get()
-            self.expressao=float(string)
-            arredondado=round(self.expressao,1)
-            self.expressao=str(arredondado)
-            self.conteudoCaixa.set(self.expressao)
-        return None
-
-    # Método Privado
-    def __fatorial(
-        self : object,
-        event: 'Event' = None
-        ):
-        'Devolve o fatorial do numero'
-        # Usando float para transformar em números, pois float funciona para int
-        # mas int não funciona se o usuário decidir mexer com float
-        self.conteudoCaixa.set(factorial(float(self.expressao)))
-        self.expressao=str(factorial(float(self.expressao)))
-        return None
-
-    # Método Privado
-    def __log(
-        self : object,
-        event: 'Event' = None
-        ):
-        'Devolve o log do numero'
-        # Usando float para transformar em números, pois float funciona para int
-        # mas int não funciona se o usuário decidir mexer com float
-        self.conteudoCaixa.set(log(float(self.expressao)))
-        self.expressao=str(log(float(self.expressao)))
-        return None
-
-    # Método Privado
-    def __rad(
-        self : object,
-        event: 'Event' = None
-        ):
-        'Transforma o grau dado em radianos'
-        # Usando float para transformar em números, pois float funciona para int
-        # mas int não funciona se o usuário decidir mexer com float
-        radianosemdecimal=(radians(float(self.expressao)))
-        # Para a funçao gcd nao pode ser float
-        divisor=gcd(int(self.expressao),180)
-        numeradorradianos=int(int(self.expressao)/divisor)
-        radianos=str(numeradorradianos)
-        final=radianosemdecimal,'ou',radianos+'π','/',int(180/divisor)
-        self.conteudoCaixa.set(final)
-        # Definindo que a expressao que vai continuar ali pro usuario seguir fazendo contas
-        # direto, seja o resultado do radiano em decimais, pois é o que pode ser usado para
-        # continuar a conta, tendo em vista que o valor é o mesmo
-        self.expressao=str(radianosemdecimal)
-        return None
-
-    # Método Privado
-    def __deg(
-        self : object,
-        event: 'Event' = None
-        ):
-        'Transforma o radianos dado em graus'
-        # Usando float para transformar em números, pois float funciona para int
-        # mas int não funciona se o usuário decidir mexer com float
-        
-        # Definindo uma maneira de resolver para caso o usuário digite
-        # o radiano direto na forma mais comum: 'π/x'
-        if 'π' in self.expressao:
-            resultado=pi/float(self.expressao[2])
-            self.conteudoCaixa.set(round(degrees(float(resultado))))
-            self.expressao=str(degrees(float(resultado)))
-        # Caso o usuário já saiba a forma decimal do radiano
-        else:
-            self.conteudoCaixa.set(round(degrees(float(self.expressao))))
-            self.expressao=str(degrees(float(self.expressao)))
-        return None
-
-    def __deriv(
-        self : object,
-        event: 'Event' = None
-        ):
-        'Retorna a derivada exponencial, sem mostrar alguma icognita '
-        # Usando float para transformar em números, pois float funciona para int
-        # mas int não funciona se o usuário decidir mexer com float
-        string=self.expressao.split('*')
-        numero1=float(string[0])
-        numero2=float(string[2])
-        resultado=str(numero1*numero2)
-        potenciafinal=str(numero2-1)
-        self.conteudoCaixa.set(resultado+'**'+potenciafinal)
-        
-        return None
-        
     
     # Método Privado
     def __resolveExpressao(
@@ -941,9 +649,302 @@ class JanelaBase():
                 # Faça nada
                 pass
 
+        return None
+
+    # Método Privado
+    def __limpar(
+        self : object,
+        event: 'Event' = None
+        ):
+        "Limpando entrada de texto e variavel 'expressao'"
+
+        # Limpando expressao
+        self.expressao = ''
+
+        # Limpando caixa de texto
+        self.conteudoCaixa.set('')
 
         return None
 
+    # Método Privado
+    def __fatorial(
+        self : object,
+        event: 'Event' = None
+        ):
+        'Devolve o fatorial do numero'
+        # Usando float para transformar em números, pois float funciona para int
+        # mas int não funciona se o usuário decidir mexer com float
+        self.conteudoCaixa.set(factorial(float(self.expressao)))
+        self.expressao=str(factorial(float(self.expressao)))
+        return None
+    
+    # Método Privado
+    def __log(
+        self : object,
+        event: 'Event' = None
+        ):
+        'Devolve o log do numero'
+        # Usando float para transformar em números, pois float funciona para int
+        # mas int não funciona se o usuário decidir mexer com float
+        self.conteudoCaixa.set(log(float(self.expressao)))
+        self.expressao=str(log(float(self.expressao)))
+        return None
+
+    # Método Privado
+    def __fracao(
+        self : object,
+        event: 'Event' = None
+        ):
+        'Faz o resultado de uma divisão aparecer no formato de fração,'
+        'apenas simplifica usando o maior denominador em comum'
+        # Usando float para transformar em números, pois float funciona para int
+        # mas int não funciona se o usuário decidir mexer com float
+        nova=[]
+        listaemstr = str(self.expressao).split('÷')
+        for i in listaemstr:
+            nova.append(float(i))
+        divisor=gcd(nova[0],nova[1])
+        fracao=float(nova[0]/divisor),'/',float(nova[1]/divisor)
+        self.conteudoCaixa.set(fracao)
+        return None
+ 
+    # Método Privado
+    def __arredondar(
+        self : object,
+        event: 'Event' = None
+        ):
+        'Arredonda o valor'
+        # Usando float para transformar em números, pois float funciona para int
+        # mas int não funciona se o usuário decidir mexer com float
+        
+        # Condiçao para caso o usuario queira arredondar o resultado decimal de uma
+        # transformacao de grau pra radiano, uma vez que essa funçao fornece 2 resultados
+        if 'ou' in self.conteudoCaixa.get():
+            string = self.conteudoCaixa.get()
+            partida=string.split(' ')
+            numero=partida[0]
+            final=numero[1:-1]
+            self.expressao=float(final)
+            arredondado=round(self.expressao,1)
+            self.expressao=str(arredondado)
+            self.conteudoCaixa.set(self.expressao)
+        # Qualquer outro arredondamento
+        else:
+            string = self.conteudoCaixa.get()
+            self.expressao=float(string)
+            arredondado=round(self.expressao,1)
+            self.expressao=str(arredondado)
+            self.conteudoCaixa.set(self.expressao)
+        return None
+
+    def __deriv(
+        self : object,
+        event: 'Event' = None
+        ):
+        'Retorna a derivada exponencial, sem mostrar alguma icognita '
+        # Usando float para transformar em números, pois float funciona para int
+        # mas int não funciona se o usuário decidir mexer com float
+        string=self.expressao.split('*')
+        numero1=float(string[0])
+        numero2=float(string[2])
+        resultado=str(numero1*numero2)
+        potenciafinal=str(numero2-1)
+        self.conteudoCaixa.set(resultado+'**'+potenciafinal)
+        
+        return None
+
+    # Método Privado
+    def __manual(
+        self : object,
+        event: 'Event' = None
+        ):
+        'Exibe uma janela explicando as funções da calculadora'
+
+        # Abrindo janela com o diálogo
+        decisao = messagebox.showinfo(
+            'Manual',
+            'Olá! Dúvidas? Veja se isso ajuda:\n\nLog: Por a base e o logaritmando\n'
+        )
+        return None
+    # Método Privado
+    def __sin(
+        self : object,
+        event: 'Event' = None
+        ):
+        'Transforma o grau dado em radianos e devolve o sin'
+        # Usando float para transformar em números, pois float funciona para int
+        # mas int não funciona se o usuário decidir mexer com float
+        self.expressao=float(self.expressao)
+        nova=radians(self.expressao)
+        seno=sin(radians(self.expressao))
+        self.expressao=str(seno)
+        self.conteudoCaixa.set((self.expressao))
+        return None
+
+    # Método Privado
+    def __cos(
+        self : object,
+        event: 'Event' = None
+        ):
+        'Transforma o grau dado em radianos e devolve o cos'
+        # Usando float para transformar em números, pois float funciona para int
+        # mas int não funciona se o usuário decidir mexer com float
+        self.expressao=float(self.expressao)
+        nova=radians(self.expressao)
+        cose=cos(nova)
+        self.expressao=str(cose)
+        self.conteudoCaixa.set(self.expressao)
+        return None
+
+    # Método Privado
+    def __tan(
+        self : object,
+        event: 'Event' = None
+        ):
+        'Transforma o grau dado em radianos e devolve a tan'
+        # Usando float para transformar em números, pois float funciona para int
+        # mas int não funciona se o usuário decidir mexer com float
+        self.expressao=float(self.expressao)
+        nova=radians(self.expressao)
+        tang=tan(nova)
+        self.expressao=str(tang)
+        self.conteudoCaixa.set(self.expressao)
+        return None
+
+    # Método Privado
+    def __rad(
+        self : object,
+        event: 'Event' = None
+        ):
+        'Transforma o grau dado em radianos'
+        # Usando float para transformar em números, pois float funciona para int
+        # mas int não funciona se o usuário decidir mexer com float
+        radianosemdecimal=(radians(float(self.expressao)))
+        # Para a funçao gcd nao pode ser float
+        divisor=gcd(int(self.expressao),180)
+        numeradorradianos=int(int(self.expressao)/divisor)
+        radianos=str(numeradorradianos)
+        final=radianosemdecimal,'ou',radianos+'π','/',int(180/divisor)
+        self.conteudoCaixa.set(final)
+        # Definindo que a expressao que vai continuar ali pro usuario seguir fazendo contas
+        # direto, seja o resultado do radiano em decimais, pois é o que pode ser usado para
+        # continuar a conta, tendo em vista que o valor é o mesmo
+        self.expressao=str(radianosemdecimal)
+        return None
+
+    # Método Privado
+    def __deg(
+        self : object,
+        event: 'Event' = None
+        ):
+        'Transforma o radianos dado em graus'
+        # Usando float para transformar em números, pois float funciona para int
+        # mas int não funciona se o usuário decidir mexer com float
+        
+        # Definindo uma maneira de resolver para caso o usuário digite
+        # o radiano direto na forma mais comum: 'π/x'
+        if 'π' in self.expressao:
+            resultado=pi/float(self.expressao[2])
+            self.conteudoCaixa.set(round(degrees(float(resultado))))
+            self.expressao=str(degrees(float(resultado)))
+        # Caso o usuário já saiba a forma decimal do radiano
+        else:
+            self.conteudoCaixa.set(round(degrees(float(self.expressao))))
+            self.expressao=str(degrees(float(self.expressao)))
+        return None
+
+    # Método Privado
+    def __del(
+        self : object,
+        event: 'Event' = None
+        ):
+        "Apagar apenas o último caractere para não"
+        "ter que apagar a função inteira a cada erro"
+
+        self.expressao = self.conteudoCaixa.get()
+        for i in self.expressao:
+            self.conteudoCaixa.set(self.expressao[:-1])
+        self.expressao=self.expressao[:-1]
+            
+        return None
+
+    # Método Privado
+    def __media(
+        self : object,
+        event: 'Event' = None
+        ):
+        'Faz media da soma de numeros'
+        #Usando float para transformar em números, pois float funciona para int
+        #mas int não funciona se o usuário decidir mexer com float
+        nova=[]
+        listaemstr = str(self.expressao).split('+')
+        for i in listaemstr:
+            nova.append(float(i))
+        self.conteudoCaixa.set(sum(nova)/len(nova)) 
+        return None
+
+    # Método Privado
+    def __romanos(
+        self : object,
+        event: 'Event' = None
+        ):
+        'Transforma os numeros em numeros romanos'
+        # Usando apenas int, pois a função de números romanos nao irá trabalhar com float
+        num = (1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1)
+        rom = ('M', 'CM', 'D', 'CD','C', 'XC','L','XL','X','IX','V','IV','I')
+        resultado = []
+        # Caso o usuário queira transformar um float
+        if '.' in self.expressao:
+            self.conteudoCaixa.set('Não esqueça de usar um número inteiro')
+        elif 0 < int(self.expressao) < 4000:
+            for i in range(len(num)):
+                numero = int(self.expressao) / num[i]
+                resultado.append(rom[i] * int(numero))
+                self.expressao=int(self.expressao)
+                self.expressao -= num[i] * int(numero)
+            final = ''.join(resultado)
+            self.conteudoCaixa.set(final)
+            self.expressao=str(final)    
+        else:
+            self.conteudoCaixa.set('Aí não, né! Só posso com número <4000')
+        return None
+
+    # Método Privado
+    def __fecharJanela(
+        self: object
+        ):
+        'Fechando janela'
+
+        # Excutando fechamento
+        self.janela.destroy()
+
+        return None
+    
+    # Método Privado
+    def __perguntarPraSair(
+        self : object,
+        event: 'Event' = None
+        ):
+        'Exibe uma janela perguntando se deseja fechar a janela'
+
+        # Abrindo janela com o diálogo
+        decisao = messagebox.askyesno(
+            'Fechar calculadora',
+            'Acabaram os cálculos por hoje?'
+        )
+
+        # Verificando decisão
+        if decisao == True:
+            # Fechando a janela
+            self.__fecharJanela()
+
+        else:
+            # Faça nada
+            pass
+
+        return None
+
+    # Método Privado
     def __definirAcoesTeclado(
         self: object
         ):
