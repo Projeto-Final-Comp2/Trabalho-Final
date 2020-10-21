@@ -67,7 +67,6 @@ class JanelaBase():
     def __configurarBotao(
         self       : object,
         corTexto   : str,
-        corFundo   : str,
         altura     : [int,float],
         comprimento: [int,float]
         ):
@@ -75,7 +74,6 @@ class JanelaBase():
 
         # Criando atributos privados com os parametros
         self.__corBotaoTexto    = corTexto
-        self.__corBotaoBg       = corFundo
         self.__alturaBotao      = altura
         self.__comprimentoBotao = comprimento
 
@@ -118,6 +116,7 @@ class JanelaBase():
         # mescalgem de 3 colunas de espaço, tendo 10 px
         # de distância entre a borda desse espaço e a caixa
         self.caixaDaEquacao.grid(columnspan=4, ipadx=4)
+        self.caixaDaEquacao.icursor(len(self.caixaDaEquacao.get()))
 
         # Definindo um valor inicial/padrão para a caixa
         # de texto
@@ -128,7 +127,7 @@ class JanelaBase():
             self.janela,                 # Onde será colocado o botão
             text='1',                    # Texto a ser exibido no botão
             fg=self.__corBotaoTexto,        # Cor do texto
-            bg=self.__corBotaoBg,          # Cor de fundo do botão
+            bg='hot pink',          # Cor de fundo do botão
             height=self.__alturaBotao,     # Altura do botão
             width=self.__comprimentoBotao, # Comprimento do botão
             command=lambda:self.__adicionaValor(1)
@@ -140,7 +139,7 @@ class JanelaBase():
             self.janela,
             text='2',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg='hot pink',
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
             command=lambda:self.__adicionaValor(2)
@@ -151,7 +150,7 @@ class JanelaBase():
             self.janela,
             text='3',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg='hot pink',
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
             command=lambda:self.__adicionaValor(3)
@@ -162,7 +161,7 @@ class JanelaBase():
             self.janela,
             text='4',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg='hot pink',
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
             command=lambda:self.__adicionaValor(4)
@@ -173,7 +172,7 @@ class JanelaBase():
             self.janela,
             text='5',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg='hot pink',
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
             command=lambda:self.__adicionaValor(5)
@@ -184,7 +183,7 @@ class JanelaBase():
             self.janela,
             text='6',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg='hot pink',
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
             command=lambda:self.__adicionaValor(6)
@@ -195,7 +194,7 @@ class JanelaBase():
             self.janela,
             text='7',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg='hot pink',
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
             command=lambda:self.__adicionaValor(7)
@@ -206,7 +205,7 @@ class JanelaBase():
             self.janela,
             text='8',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg='hot pink',
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
             command=lambda:self.__adicionaValor(8)
@@ -217,7 +216,7 @@ class JanelaBase():
             self.janela,
             text='9',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg='hot pink',
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
             command=lambda:self.__adicionaValor(9)
@@ -228,159 +227,84 @@ class JanelaBase():
             self.janela,
             text='0',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg='hot pink',
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
             command=lambda:self.__adicionaValor(0)
         )
 
         # Criando um botão funcional com o texto '+'
-        self.botaoPlus = Button(
+        self.botaoMais = Button(
             self.janela,
             text='+',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg='hot pink',
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
             command=lambda:self.__adicionaValor('+')
         )
 
         # Criando um botão funcional com o texto '-'
-        self.botaoMinus = Button(
+        self.botaoMenos = Button(
             self.janela,
             text='-',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg='hot pink',
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
             command=lambda:self.__adicionaValor('-')
         )
 
         # Criando um botão funcional com o texto '*'
-        self.botaoMultiply = Button(
+        self.botaoVezes = Button(
             self.janela,
             text='x',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg='hot pink',
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
             command=lambda:self.__adicionaValor('x')
         )
 
         # Criando um botão funcional com o texto '/'
-        self.botaoDivide = Button(
+        self.botaoDivisao = Button(
             self.janela,
             text='÷',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg='hot pink',
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
             command=lambda:self.__adicionaValor('÷')
         )
 
         # Criando um botão funcional com o texto '.'
-        self.botaoDecimal= Button(
+        self.botaoPonto= Button(
             self.janela,
             text='.',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg='hot pink',
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
             command=lambda:self.__adicionaValor('.')
         )
 
         # Criando um botão funcional com o texto '='
-        self.botaoEqual = Button(
+        self.botaoIgual = Button(
             self.janela,
             text='=',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg='hot pink',
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
             command=self.__resolveExpressao
         )
 
-        # Criando um botão funcional com o texto 'C'
-        self.botaoClear = Button(
-            self.janela,
-            text='C',
-            fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
-            height=self.__alturaBotao,
-            width=self.__comprimentoBotao,
-            command=self.__limpar
-        )
-
-        # Criando um botão funcional com o texto 'π'
-        self.botaoPi = Button(
-            self.janela,
-            text='π',
-            fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
-            height=self.__alturaBotao,
-            width=self.__comprimentoBotao,
-            command=lambda:self.__adicionaValor('π')
-        )
-
-        # Criando um botão funcional com o texto 'e'
-        self.botaoEulerNumber = Button(
-            self.janela,
-            text='e',
-            fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
-            height=self.__alturaBotao,
-            width=self.__comprimentoBotao,
-            command=lambda:self.__adicionaValor('e')
-        )
-
-        # Criando um botão funcional com o texto 'n!'
-        self.botaoFatorial = Button(
-            self.janela,
-            text='n!',
-            fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
-            height=self.__alturaBotao,
-            width=self.__comprimentoBotao,
-            command=self.__fatorial
-        )
-
-        # Criando um botão funcional com o texto 'Ln' 
-        self.botaoLn = Button(
-            self.janela,
-            text='Ln',
-            fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
-            height=self.__alturaBotao,
-            width=self.__comprimentoBotao,
-            command=self.__log
-        )
-
-        # Criando um botão funcional com o texto 'Rad' 
-        self.botaoConverteRadianos = Button(
-            self.janela,
-            text='Rad',
-            fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
-            height=self.__alturaBotao,
-            width=self.__comprimentoBotao,
-            command=self.__rad
-        )
-        # Criando um botão funcional com o texto 'Graus'  
-        self.botaoConverteGraus = Button(
-            self.janela,
-            text='Graus',
-            fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
-            height=self.__alturaBotao,
-            width=self.__comprimentoBotao,
-            command=self.__deg
-        )
         # Criando um botão funcional com o texto '('  
         self.botaoParenteses1 = Button(
             self.janela,
             text='(',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg='light coral',
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
             command=lambda:self.__adicionaValor('(')
@@ -391,18 +315,40 @@ class JanelaBase():
             self.janela,
             text=')',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg='light coral',
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
             command=lambda:self.__adicionaValor(')')
         )
 
+        # Criando um botão funcional com o texto 'xʸ'
+        self.botaoElevado = Button(
+            self.janela,
+            text='xʸ',
+            fg=self.__corBotaoTexto,
+            bg='light coral',
+            height=self.__alturaBotao,
+            width=self.__comprimentoBotao,
+            command=lambda:self.__adicionaValor('**') 
+        )
+        
+        # Criando um botão funcional com o texto 'C'
+        self.botaoLimpar = Button(
+            self.janela,
+            text='C',
+            fg=self.__corBotaoTexto,
+            bg='light coral',
+            height=self.__alturaBotao,
+            width=self.__comprimentoBotao,
+            command=self.__limpar
+        )
+         
         # Criando um botão funcional com o texto 'Sin'
         self.botaoSin = Button(
             self.janela,
             text='Sin',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg='pale violet red',
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
             command=self.__sin
@@ -413,7 +359,7 @@ class JanelaBase():
             self.janela,
             text='Cos',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg='pale violet red',
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
             command=self.__cos
@@ -424,43 +370,43 @@ class JanelaBase():
             self.janela,
             text='Tan',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg='pale violet red',
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
             command=self.__tan
         )
 
-        # Criando um botão funcional com o texto 'xʸ'
-        self.botaoElevado = Button(
+        # Criando um botão funcional com o texto 'Rad' 
+        self.botaoConverteRadianos = Button(
             self.janela,
-            text='xʸ',
+            text='Rad',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg='pale violet red',
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
-            command=lambda:self.__adicionaValor('**') 
+            command=self.__rad
+        )
+
+        # Criando um botão funcional com o texto 'Graus'  
+        self.botaoConverteGraus = Button(
+            self.janela,
+            text='Graus',
+            fg=self.__corBotaoTexto,
+            bg='pale violet red',
+            height=self.__alturaBotao,
+            width=self.__comprimentoBotao,
+            command=self.__deg
         )
 
         # Criando um botão funcional com o texto 'Del'
-        self.botaoApagar = Button(
+        self.botaoDel = Button(
             self.janela,
             text='Del',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg='pale violet red',
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
-            command=self.__apagar
-        )
-
-        # Criando um botão funcional com o texto '?'
-        self.botaoManual = Button(
-            self.janela,
-            text='?',
-            fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
-            height=self.__alturaBotao,
-            width=self.__comprimentoBotao,
-            command=self.__manual
+            command=self.__del
         )
 
         # Criando um botão funcional com o texto 'Med'
@@ -468,21 +414,10 @@ class JanelaBase():
             self.janela,
             text='Med',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg='pale violet red',
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
             command=self.__media
-        )
-
-        # Criando um botão funcional com o texto 'X/Y'
-        self.botaoFracao = Button(
-            self.janela,
-            text='X/Y',
-            fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
-            height=self.__alturaBotao,
-            width=self.__comprimentoBotao,
-            command=self.__fracao
         )
 
         # Criando um botão funcional com o texto 'Rom'
@@ -490,25 +425,117 @@ class JanelaBase():
             self.janela,
             text='Rom',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg='pale violet red',
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
             command=self.__romanos
         )
 
-        # Criando um botão funcional com o texto '~='
-        self.arredondar = Button(
+        # Criando um botão funcional com o texto 'n!'
+        self.botaoFatorial = Button(
             self.janela,
-            text='~=',
+            text='n!',
             fg=self.__corBotaoTexto,
-            bg=self.__corBotaoBg,
+            bg='light coral',
+            height=self.__alturaBotao,
+            width=self.__comprimentoBotao,
+            command=self.__fatorial
+        )
+
+        # Criando um botão funcional com o texto 'Ln' 
+        self.botaoLn = Button(
+            self.janela,
+            text='Ln',
+            fg=self.__corBotaoTexto,
+            bg='light coral',
+            height=self.__alturaBotao,
+            width=self.__comprimentoBotao,
+            command=self.__log
+        )
+
+        # Criando um botão funcional com o texto 'π'
+        self.botaoPi = Button(
+            self.janela,
+            text='π',
+            fg=self.__corBotaoTexto,
+            bg='light coral',
+            height=self.__alturaBotao,
+            width=self.__comprimentoBotao,
+            command=lambda:self.__adicionaValor('π')
+        )
+
+        # Criando um botão funcional com o texto 'e'
+        self.botaoEulerNumber = Button(
+            self.janela,
+            text='e',
+            fg=self.__corBotaoTexto,
+            bg='light coral',
+            height=self.__alturaBotao,
+            width=self.__comprimentoBotao,
+            command=lambda:self.__adicionaValor('e')
+        )
+
+        # Criando um botão funcional com o texto 'X/Y'
+        self.botaoFracao = Button(
+            self.janela,
+            text='X/Y',
+            fg=self.__corBotaoTexto,
+            bg='light coral',
+            height=self.__alturaBotao,
+            width=self.__comprimentoBotao,
+            command=self.__fracao
+        )
+
+        # Criando um botão funcional com o texto '√'
+        self.botaoRaiz = Button(
+            self.janela,
+            text='√',
+            fg=self.__corBotaoTexto,
+            bg='light coral',
+            height=self.__alturaBotao,
+            width=self.__comprimentoBotao,
+            command=lambda:self.__adicionaValor('**(1/')
+        )
+
+        # Criando um botão funcional com o texto '≅'
+        self.botaoArredondar = Button(
+            self.janela,
+            text='≅',
+            fg=self.__corBotaoTexto,
+            bg='light coral',
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
             command=self.__arredondar
         )
-    
+
+        # Criando um botão funcional com o texto 'xʸ''
+        self.botaoDeriv = Button(
+            self.janela,
+            text="xʸ'",
+            fg=self.__corBotaoTexto,
+            bg='light coral',
+            height=self.__alturaBotao,
+            width=self.__comprimentoBotao,
+            command=self.__deriv
+        )
+
+        # Criando um botão funcional com o texto '?'
+        self.botaoManual = Button(
+            self.janela,
+            text='?',
+            fg=self.__corBotaoTexto,
+            bg='DeepPink2',
+            height=self.__alturaBotao,
+            width=self.__comprimentoBotao,
+            command=self.__manual
+        )
+        
         # Posicionando os botões considerando um grid
         # com 8 linhas e 5 colunas
+        # Seguindo a mesma ordem em que os botoẽs foram definidos
+        # e condizendo com a proximidade entre eles no layout
+
+        #Números
         self.botao1               .grid(row=4, column=0)
         self.botao2               .grid(row=4, column=1)
         self.botao3               .grid(row=4, column=2)
@@ -519,31 +546,34 @@ class JanelaBase():
         self.botao8               .grid(row=2, column=1)
         self.botao9               .grid(row=2, column=2)
         self.botao0               .grid(row=5, column=1)
-        self.botaoPlus            .grid(row=2, column=3)
-        self.botaoMinus           .grid(row=3, column=3)
-        self.botaoMultiply        .grid(row=4, column=3)
-        self.botaoDivide          .grid(row=5, column=3)
-        self.botaoEqual           .grid(row=5, column=2)
-        self.botaoClear           .grid(row=6, column=3)
-        self.botaoDecimal         .grid(row=5, column=0)
+        self.botaoMais            .grid(row=2, column=3)
+        self.botaoMenos           .grid(row=3, column=3)
+        self.botaoVezes           .grid(row=4, column=3)
+        self.botaoDivisao         .grid(row=5, column=3)
+        self.botaoPonto           .grid(row=5, column=0)
+        self.botaoIgual           .grid(row=5, column=2)
         self.botaoParenteses1     .grid(row=6, column=0)
         self.botaoParenteses2     .grid(row=6, column=1)
+        self.botaoElevado         .grid(row=6, column=2)
+        self.botaoLimpar          .grid(row=6, column=3)
         self.botaoSin             .grid(row=0, column=4)
         self.botaoCos             .grid(row=2, column=4)
         self.botaoTan             .grid(row=3, column=4)
-        self.botaoElevado         .grid(row=6, column=2)
-        self.botaoApagar          .grid(row=5, column=4)
-        self.botaoManual          .grid(row=8, column=3)
-        self.botaoPi              .grid(row=7, column=2)
-        self.botaoEulerNumber     .grid(row=7, column=3)
+        self.botaoConverteRadianos.grid(row=4, column=4)
+        self.botaoConverteGraus   .grid(row=5, column=4)
+        self.botaoDel             .grid(row=6, column=4)
+        self.botaoMedia           .grid(row=7, column=4)
+        self.botaoRomanos         .grid(row=8, column=4)
         self.botaoFatorial        .grid(row=7, column=0)
         self.botaoLn              .grid(row=7, column=1)
-        self.botaoConverteRadianos.grid(row=6, column=4)
-        self.botaoConverteGraus   .grid(row=7, column=4)
-        self.botaoMedia           .grid(row=4, column=4)
+        self.botaoPi              .grid(row=7, column=2)
+        self.botaoEulerNumber     .grid(row=7, column=3)
         self.botaoFracao          .grid(row=8, column=0)
-        self.botaoRomanos         .grid(row=8, column=4)
-        self.arredondar           .grid(row=8, column=2)
+        self.botaoRaiz            .grid(row=8, column=1)
+        self.botaoArredondar      .grid(row=8, column=2)
+        self.botaoDeriv           .grid(row=8, column=3)
+        self.botaoManual          .grid(row=9, column=0)
+            
         return None
 
     #Definição dos métodos dos botões, como as funções de cada um vão funcionar
@@ -589,12 +619,12 @@ class JanelaBase():
 
         return None
 
-    def __apagar(
+    def __del(
         self : object,
         event: 'Event' = None
         ):
-        "Apagar apenas o último caractere"
-        "Para não ter que apagar a função inteira a cada erro"
+        "Apagar apenas o último caractere para não"
+        "ter que apagar a função inteira a cada erro"
 
         self.expressao = self.conteudoCaixa.get()
         for i in self.expressao:
@@ -647,7 +677,7 @@ class JanelaBase():
         event: 'Event' = None
         ):
         'Faz media da soma de numeros'
-        #usando float para transformar em números, pois float funciona para int
+        #Usando float para transformar em números, pois float funciona para int
         #mas int não funciona se o usuário decidir mexer com float
         nova=[]
         listaemstr = str(self.expressao).split('+')
@@ -661,10 +691,10 @@ class JanelaBase():
         self : object,
         event: 'Event' = None
         ):
-        'Faz o resultado de uma divisão aparecer no formato de fração'
-        'Apenas simplifica usando o maior denominador em comum'
-        #usando float para transformar em números, pois float funciona para int
-        #mas int não funciona se o usuário decidir mexer com float
+        'Faz o resultado de uma divisão aparecer no formato de fração,'
+        'apenas simplifica usando o maior denominador em comum'
+        # Usando float para transformar em números, pois float funciona para int
+        # mas int não funciona se o usuário decidir mexer com float
         nova=[]
         listaemstr = str(self.expressao).split('÷')
         for i in listaemstr:
@@ -680,11 +710,11 @@ class JanelaBase():
         event: 'Event' = None
         ):
         'Transforma os numeros em numeros romanos'
-        #usando apenas int, pois a função de números romanos nao irá trabalhar com float
+        # Usando apenas int, pois a função de números romanos nao irá trabalhar com float
         num = (1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1)
         rom = ('M', 'CM', 'D', 'CD','C', 'XC','L','XL','X','IX','V','IV','I')
         resultado = []
-        #caso o usuário queira transformar um float
+        # Caso o usuário queira transformar um float
         if '.' in self.expressao:
             self.conteudoCaixa.set('Não esqueça de usar um número inteiro')
         elif 0 < int(self.expressao) < 4000:
@@ -705,13 +735,13 @@ class JanelaBase():
         self : object,
         event: 'Event' = None
         ):
-        'transforma o grau dado em radianos e devolve o sin'
-        #usando float para transformar em números, pois float funciona para int
-        #mas int não funciona se o usuário decidir mexer com float
+        'Transforma o grau dado em radianos e devolve o sin'
+        # Usando float para transformar em números, pois float funciona para int
+        # mas int não funciona se o usuário decidir mexer com float
         self.expressao=float(self.expressao)
         nova=radians(self.expressao)
         seno=sin(radians(self.expressao))
-        self.expressao=string=str(seno)
+        self.expressao=str(seno)
         self.conteudoCaixa.set((self.expressao))
         return None
 
@@ -720,9 +750,9 @@ class JanelaBase():
         self : object,
         event: 'Event' = None
         ):
-        'transforma o grau dado em radianos e devolve o cos'
-        #usando float para transformar em números, pois float funciona para int
-        #mas int não funciona se o usuário decidir mexer com float
+        'Transforma o grau dado em radianos e devolve o cos'
+        # Usando float para transformar em números, pois float funciona para int
+        # mas int não funciona se o usuário decidir mexer com float
         self.expressao=float(self.expressao)
         nova=radians(self.expressao)
         cose=cos(nova)
@@ -735,9 +765,9 @@ class JanelaBase():
         self : object,
         event: 'Event' = None
         ):
-        'transforma o grau dado em radianos e devolve o tan'
-        #usando float para transformar em números, pois float funciona para int
-        #mas int não funciona se o usuário decidir mexer com float
+        'Transforma o grau dado em radianos e devolve a tan'
+        # Usando float para transformar em números, pois float funciona para int
+        # mas int não funciona se o usuário decidir mexer com float
         self.expressao=float(self.expressao)
         nova=radians(self.expressao)
         tang=tan(nova)
@@ -750,14 +780,28 @@ class JanelaBase():
         self : object,
         event: 'Event' = None
         ):
-        'arredonda o valor'
-        #usando float para transformar em números, pois float funciona para int
-        #mas int não funciona se o usuário decidir mexer com float
-        string = self.conteudoCaixa.get()
-        self.expressao=float(string)
-        arredondado=round(self.expressao,1)
-        self.expressao=str(arredondado)
-        self.conteudoCaixa.set(self.expressao)
+        'Arredonda o valor'
+        # Usando float para transformar em números, pois float funciona para int
+        # mas int não funciona se o usuário decidir mexer com float
+        
+        # Condiçao para caso o usuario queira arredondar o resultado decimal de uma
+        # transformacao de grau pra radiano, uma vez que essa funçao fornece 2 resultados
+        if 'ou' in self.conteudoCaixa.get():
+            string = self.conteudoCaixa.get()
+            partida=string.split(' ')
+            numero=partida[0]
+            final=numero[1:-1]
+            self.expressao=float(final)
+            arredondado=round(self.expressao,1)
+            self.expressao=str(arredondado)
+            self.conteudoCaixa.set(self.expressao)
+        # Qualquer outro arredondamento
+        else:
+            string = self.conteudoCaixa.get()
+            self.expressao=float(string)
+            arredondado=round(self.expressao,1)
+            self.expressao=str(arredondado)
+            self.conteudoCaixa.set(self.expressao)
         return None
 
     # Método Privado
@@ -765,9 +809,9 @@ class JanelaBase():
         self : object,
         event: 'Event' = None
         ):
-        'devolve o fatorial do numero'
-        #usando float para transformar em números, pois float funciona para int
-        #mas int não funciona se o usuário decidir mexer com float
+        'Devolve o fatorial do numero'
+        # Usando float para transformar em números, pois float funciona para int
+        # mas int não funciona se o usuário decidir mexer com float
         self.conteudoCaixa.set(factorial(float(self.expressao)))
         self.expressao=str(factorial(float(self.expressao)))
         return None
@@ -777,9 +821,9 @@ class JanelaBase():
         self : object,
         event: 'Event' = None
         ):
-        'devolve o log do numero'
-        #usando float para transformar em números, pois float funciona para int
-        #mas int não funciona se o usuário decidir mexer com float
+        'Devolve o log do numero'
+        # Usando float para transformar em números, pois float funciona para int
+        # mas int não funciona se o usuário decidir mexer com float
         self.conteudoCaixa.set(log(float(self.expressao)))
         self.expressao=str(log(float(self.expressao)))
         return None
@@ -789,19 +833,19 @@ class JanelaBase():
         self : object,
         event: 'Event' = None
         ):
-        'transforma o grau dado em radianos'
-        #usando float para transformar em números, pois float funciona para int
-        #mas int não funciona se o usuário decidir mexer com float
+        'Transforma o grau dado em radianos'
+        # Usando float para transformar em números, pois float funciona para int
+        # mas int não funciona se o usuário decidir mexer com float
         radianosemdecimal=(radians(float(self.expressao)))
-        #para a funçao gcd nao pode ser float
+        # Para a funçao gcd nao pode ser float
         divisor=gcd(int(self.expressao),180)
         numeradorradianos=int(int(self.expressao)/divisor)
-        radianos=str(numeradorradianos)+'π','/',int(180/divisor)
-        final=radianosemdecimal,'ou',radianos
+        radianos=str(numeradorradianos)
+        final=radianosemdecimal,'ou',radianos+'π','/',int(180/divisor)
         self.conteudoCaixa.set(final)
-        #definindo que a expressao que vai continuar ali pro usuario seguir fazendo contas
-        #direto, seja o resultado do radiano em decimais, pois é o que pode ser usado para
-        #continuar a conta, tendo em vista que o valor é o mesmo
+        # Definindo que a expressao que vai continuar ali pro usuario seguir fazendo contas
+        # direto, seja o resultado do radiano em decimais, pois é o que pode ser usado para
+        # continuar a conta, tendo em vista que o valor é o mesmo
         self.expressao=str(radianosemdecimal)
         return None
 
@@ -810,20 +854,38 @@ class JanelaBase():
         self : object,
         event: 'Event' = None
         ):
-        'transforma o radianos dado em graus'
-        #usando float para transformar em números, pois float funciona para int
-        #mas int não funciona se o usuário decidir mexer com float
-        #definindo uma maneira de resolver para caso o usuário digite
-        #o radiano direto na forma mais comum: 'π/x'
+        'Transforma o radianos dado em graus'
+        # Usando float para transformar em números, pois float funciona para int
+        # mas int não funciona se o usuário decidir mexer com float
+        
+        # Definindo uma maneira de resolver para caso o usuário digite
+        # o radiano direto na forma mais comum: 'π/x'
         if 'π' in self.expressao:
             resultado=pi/float(self.expressao[2])
             self.conteudoCaixa.set(round(degrees(float(resultado))))
             self.expressao=str(degrees(float(resultado)))
-        #caso o usuário já saiba a forma decimal do radiano
+        # Caso o usuário já saiba a forma decimal do radiano
         else:
             self.conteudoCaixa.set(round(degrees(float(self.expressao))))
             self.expressao=str(degrees(float(self.expressao)))
         return None
+
+    def __deriv(
+        self : object,
+        event: 'Event' = None
+        ):
+        'Retorna a derivada exponencial, sem mostrar alguma icognita '
+        # Usando float para transformar em números, pois float funciona para int
+        # mas int não funciona se o usuário decidir mexer com float
+        string=self.expressao.split('*')
+        numero1=float(string[0])
+        numero2=float(string[2])
+        resultado=str(numero1*numero2)
+        potenciafinal=str(numero2-1)
+        self.conteudoCaixa.set(resultado+'**'+potenciafinal)
+        
+        return None
+        
     
     # Método Privado
     def __resolveExpressao(
@@ -902,10 +964,9 @@ class JanelaBase():
     # Método Público    
     def rodandoJanela(
         comprimento     : [int,float] = 320,
-        altura          : [int,float] = 235,
+        altura          : [int,float] = 265,
         titulo          : str         = 'Calculadora',
         corFundo        : str         = 'pink',
-        corFundoBotao   : str         = 'pink',
         corTextoBotao   : str         = 'black',
         alturaBotao     : [int,float] = 1,
         comprimentoBotao: [int,float] = 4,
@@ -914,15 +975,6 @@ class JanelaBase():
                                                    # yourFile  : Texto no Arquivo '.txt' dado
         ):
         'Executando janela e sua funções'
-
-        #self.botao1 = Button(
-            #self.janela,                 # Onde será colocado o botão
-            #text='1',                    # Texto a ser exibido no botão
-            #fg=self.__corBotaoTexto,        # Cor do texto
-            #bg=self.__corBotaoBg,          # Cor de fundo do botão
-            #height=self.__alturaBotao,     # Altura do botão
-            #width=self.__comprimentoBotao, # Comprimento do botão
-            #command=lambda:self.__adicionaValor(1
 
         # Criando uma instancia da janela base
         print('\n> Instanciando uma janela base', end='... ', file=myFile)
@@ -944,8 +996,7 @@ class JanelaBase():
         # Definindo as configurações dos botões
         print('\n> Configurando botões',end='... ', file=myFile)
         self.__configurarBotao(
-            corTextoBotao, corFundoBotao, alturaBotao,
-            comprimentoBotao
+            corTextoBotao, alturaBotao, comprimentoBotao
         )
         print('✓',file=myFile)
 
@@ -982,7 +1033,7 @@ class JanelaBase():
 if __name__ == "__main__":
 
     # Informando início do programa
-    print('\nPrograma iniciado\n')
+    print('\nA calculadora está pronta para ser usada!\n')
 
     # Executando janela
     JanelaBase.rodandoJanela(
@@ -990,4 +1041,4 @@ if __name__ == "__main__":
     )
 
     # Informando fim do programa
-    print('\n\nPrograma encerrado\n')
+    print('\n\nPrograma finalizado, até a próxima!\n')
