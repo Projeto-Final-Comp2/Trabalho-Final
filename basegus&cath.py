@@ -123,10 +123,10 @@ class JanelaBase():
 
         # Criando um botão funcional com o texto '1'
         self.botao1 = Button(
-            self.janela,                 # Onde será colocado o botão
-            text='1',                    # Texto a ser exibido no botão
-            fg=self.__corBotaoTexto,        # Cor do texto
-            bg='hot pink',          # Cor de fundo do botão
+            self.janela,                   # Onde será colocado o botão
+            text='1',                      # Texto a ser exibido no botão
+            fg=self.__corBotaoTexto,       # Cor do texto
+            bg='hot pink',                 # Cor de fundo do botão
             height=self.__alturaBotao,     # Altura do botão
             width=self.__comprimentoBotao, # Comprimento do botão
             command=lambda:self.__adicionaValor(1)
@@ -518,10 +518,10 @@ class JanelaBase():
             command=self.__media
         )
 
-        # Criando um botão funcional com o texto 'Rom'
+        # Criando um botão funcional com o texto 'CDLXII'
         self.botaoRomanos = Button(
             self.janela,
-            text='Rom',
+            text='CLXVII',
             fg=self.__corBotaoTexto,
             bg='pale violet red',
             height=self.__alturaBotao,
@@ -695,8 +695,8 @@ class JanelaBase():
         self : object,
         event: 'Event' = None
         ):
-        'Faz o resultado de uma divisão aparecer no formato de fração,'
-        'apenas simplifica usando o maior denominador em comum'
+        '''Faz o resultado de uma divisão aparecer no formato de fração,
+        apenas simplifica usando o maior denominador em comum'''
         # Usando float para transformar em números, pois float funciona para int
         # mas int não funciona se o usuário decidir mexer com float
         nova=[]
@@ -763,8 +763,15 @@ class JanelaBase():
         # Abrindo janela com o diálogo
         decisao = messagebox.showinfo(
             'Manual',
-            'Olá! Dúvidas? Veja se isso ajuda:\n\nLog: Por a base e o logaritmando\n'
-        )
+            '''Olá! Dúvidas? Veja se isso ajuda:\n\nDica -> Para todas as funções,
+você pode seguir calculando com o resultado, contanto que sejam cálculos simples (sem usar outras
+funções)\n\nSin, Cos e Tan: É só digitar o número e clicar no botão, eu te dou o resultado\n
+Rad: Posso te dar o radiano do grau digitado na forma decimal ou em função de π, você escolhe\n
+Graus: Transformo de radiano para grau, é só clicar, pode escrever em decimal ou como π/x que eu vou
+entender\n\nMed: Digite assim '1+2+3+...+n' e clique, que eu faço a média pra você\n
+CLXVII: Transformo o número em algaritmo romano\n\n√ e xʸ: Eu só preciso que você
+escreva antes que número você quer tirar a raiz ou elevar, e depois a potência da raiz ou o expoente\n
+X/Y: Simplifico frações\n\nxʸ': Dou a derivada exponencial, é só usar o botão xʸ ou digitar X**Y, e clicar''')
         return None
     # Método Privado
     def __sin(
@@ -858,8 +865,8 @@ class JanelaBase():
         self : object,
         event: 'Event' = None
         ):
-        "Apagar apenas o último caractere para não"
-        "ter que apagar a função inteira a cada erro"
+        '''Apagar apenas o último caractere para não
+        ter que apagar a função inteira a cada erro'''
 
         self.expressao = self.conteudoCaixa.get()
         for i in self.expressao:
@@ -957,7 +964,7 @@ class JanelaBase():
         self.janela.bind('<Escape>', self.__perguntarPraSair)
 
         # Habilitando BACKSPACE para limpar caixa de texto
-        self.janela.bind('<BackSpace>', self.__limpar)
+        self.janela.bind('<BackSpace>', self.__del)
 
 
         return None
