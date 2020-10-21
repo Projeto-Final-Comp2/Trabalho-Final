@@ -102,20 +102,22 @@ class JanelaBase():
     def __criarWidgets(
         self: object
         ):
- #trecos
+        
         'Criando e posicionando os widgets na janela'
         # Criando caixa para digitação de textos na janela
+        #definindo a largura
         # gráfica e direcionando seu conteúdo ao atributo
         # 'equação'
         self.caixaDaEquacao = Entry(
             self.janela, textvariable=self.conteudoCaixa,
-            borderwidth=2
+            width=30, borderwidth=1,
         )
-
+        #self.caixaDaEquacao.width('1')
+        
         # Posicionando a caixa de texto considerando a
         # mescalgem de 3 colunas de espaço, tendo 10 px
         # de distância entre a borda desse espaço e a caixa
-        self.caixaDaEquacao.grid(columnspan=3, ipadx=10)
+        self.caixaDaEquacao.grid(columnspan=4, ipadx=4)
 
         # Definindo um valor inicial/padrão para a caixa
         # de texto
@@ -130,7 +132,6 @@ class JanelaBase():
             height=self.__alturaBotao,     # Altura do botão
             width=self.__comprimentoBotao, # Comprimento do botão
             command=lambda:self.__adicionaValor(1)
-#funçao ĺambda: n preciso dar nome
             # Função a ser executada ao clicar no botão
         )
 
@@ -309,16 +310,6 @@ class JanelaBase():
             width=self.__comprimentoBotao,
             command=self.__limpar
         )
-
-        #self.botaoShift = Button(
-            #self.janela,                 
-            #text='Shift',                    
-            #fg=self.__corBotaoTexto,        
-            #bg=self.__corBotaoBg,          
-            #height=self.__alturaBotao,     
-            #width=self.__comprimentoBotao, 
-            #command=self.__,
-        #)
 
         # Criando um botão funcional com o texto 'π'
         self.botaoPi = Button(
@@ -517,7 +508,7 @@ class JanelaBase():
         )
     
         # Posicionando os botões considerando um grid
-        # com 6 linhas e 4 colunas
+        # com 8 linhas e 5 colunas
         self.botao1               .grid(row=4, column=0)
         self.botao2               .grid(row=4, column=1)
         self.botao3               .grid(row=4, column=2)
@@ -537,24 +528,26 @@ class JanelaBase():
         self.botaoDecimal         .grid(row=5, column=0)
         self.botaoParenteses1     .grid(row=6, column=0)
         self.botaoParenteses2     .grid(row=6, column=1)
-        self.botaoSin             .grid(row=2, column=4)
-        self.botaoCos             .grid(row=3, column=4)
-        self.botaoTan             .grid(row=4, column=4)
+        self.botaoSin             .grid(row=0, column=4)
+        self.botaoCos             .grid(row=2, column=4)
+        self.botaoTan             .grid(row=3, column=4)
         self.botaoElevado         .grid(row=6, column=2)
-        self.botaoApagar          .grid(row=6, column=4)
+        self.botaoApagar          .grid(row=5, column=4)
         self.botaoManual          .grid(row=8, column=3)
         self.botaoPi              .grid(row=7, column=2)
         self.botaoEulerNumber     .grid(row=7, column=3)
         self.botaoFatorial        .grid(row=7, column=0)
         self.botaoLn              .grid(row=7, column=1)
-        self.botaoConverteRadianos.grid(row=7, column=4)
-        self.botaoConverteGraus   .grid(row=8, column=4)
-        self.botaoMedia           .grid(row=5, column=4)
+        self.botaoConverteRadianos.grid(row=6, column=4)
+        self.botaoConverteGraus   .grid(row=7, column=4)
+        self.botaoMedia           .grid(row=4, column=4)
         self.botaoFracao          .grid(row=8, column=0)
-        self.botaoRomanos         .grid(row=8, column=1)
+        self.botaoRomanos         .grid(row=8, column=4)
         self.arredondar           .grid(row=8, column=2)
         return None
 
+    #Definição dos métodos dos botões, como as funções de cada um vão funcionar
+    
     # Método Privado
     def __adicionaValor(
         self : object,
@@ -600,7 +593,8 @@ class JanelaBase():
         self : object,
         event: 'Event' = None
         ):
-        "Apagar apenas o ultimo caractere pra eu nao ter que digitar de novo a funçao inteira a cada erro"
+        "Apagar apenas o último caractere"
+        "Para não ter que apagar a função inteira a cada erro"
 
         self.expressao = self.conteudoCaixa.get()
         for i in self.expressao:
@@ -638,7 +632,7 @@ class JanelaBase():
         self : object,
         event: 'Event' = None
         ):
-        'Exibe uma janela perguntando se deseja fechar a janela'
+        'Exibe uma janela explicando as funções da calculadora'
 
         # Abrindo janela com o diálogo
         decisao = messagebox.showinfo(
@@ -653,10 +647,12 @@ class JanelaBase():
         event: 'Event' = None
         ):
         'Faz media da soma de numeros'
+        #usando float para transformar em números, pois float funciona para int
+        #mas int não funciona se o usuário decidir mexer com float
         nova=[]
         listaemstr = str(self.expressao).split('+')
         for i in listaemstr:
-            nova.append(int(i))
+            nova.append(float(i))
         self.conteudoCaixa.set(sum(nova)/len(nova)) 
         return None
 
@@ -665,13 +661,16 @@ class JanelaBase():
         self : object,
         event: 'Event' = None
         ):
-        'Faz o resultado de uma divisão aparecer no formato de fração, apenas simplificado'
+        'Faz o resultado de uma divisão aparecer no formato de fração'
+        'Apenas simplifica usando o maior denominador em comum'
+        #usando float para transformar em números, pois float funciona para int
+        #mas int não funciona se o usuário decidir mexer com float
         nova=[]
         listaemstr = str(self.expressao).split('÷')
         for i in listaemstr:
-            nova.append(int(i))
+            nova.append(float(i))
         divisor=gcd(nova[0],nova[1])
-        fracao=int(nova[0]/divisor),'/',int(nova[1]/divisor)
+        fracao=float(nova[0]/divisor),'/',float(nova[1]/divisor)
         self.conteudoCaixa.set(fracao)
         return None
 
@@ -681,12 +680,13 @@ class JanelaBase():
         event: 'Event' = None
         ):
         'Transforma os numeros em numeros romanos'
+        #usando apenas int, pois a função de números romanos nao irá trabalhar com float
         num = (1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1)
         rom = ('M', 'CM', 'D', 'CD','C', 'XC','L','XL','X','IX','V','IV','I')
         resultado = []
-        #self.expressao=int(self.expressao)
+        #caso o usuário queira transformar um float
         if '.' in self.expressao:
-            self.conteudoCaixa.set('Use número um inteiro')
+            self.conteudoCaixa.set('Não esqueça de usar um número inteiro')
         elif 0 < int(self.expressao) < 4000:
             for i in range(len(num)):
                 numero = int(self.expressao) / num[i]
@@ -697,7 +697,7 @@ class JanelaBase():
             self.conteudoCaixa.set(final)
             self.expressao=str(final)    
         else:
-            self.conteudoCaixa.set('O número precisa ser <4000')
+            self.conteudoCaixa.set('Aí não, né! Só posso com número <4000')
         return None
 
     # Método Privado
@@ -706,6 +706,8 @@ class JanelaBase():
         event: 'Event' = None
         ):
         'transforma o grau dado em radianos e devolve o sin'
+        #usando float para transformar em números, pois float funciona para int
+        #mas int não funciona se o usuário decidir mexer com float
         self.expressao=float(self.expressao)
         nova=radians(self.expressao)
         seno=sin(radians(self.expressao))
@@ -719,7 +721,9 @@ class JanelaBase():
         event: 'Event' = None
         ):
         'transforma o grau dado em radianos e devolve o cos'
-        self.expressao=int(self.expressao)
+        #usando float para transformar em números, pois float funciona para int
+        #mas int não funciona se o usuário decidir mexer com float
+        self.expressao=float(self.expressao)
         nova=radians(self.expressao)
         cose=cos(nova)
         self.expressao=str(cose)
@@ -732,7 +736,9 @@ class JanelaBase():
         event: 'Event' = None
         ):
         'transforma o grau dado em radianos e devolve o tan'
-        self.expressao=int(self.expressao)
+        #usando float para transformar em números, pois float funciona para int
+        #mas int não funciona se o usuário decidir mexer com float
+        self.expressao=float(self.expressao)
         nova=radians(self.expressao)
         tang=tan(nova)
         self.expressao=str(tang)
@@ -745,6 +751,8 @@ class JanelaBase():
         event: 'Event' = None
         ):
         'arredonda o valor'
+        #usando float para transformar em números, pois float funciona para int
+        #mas int não funciona se o usuário decidir mexer com float
         string = self.conteudoCaixa.get()
         self.expressao=float(string)
         arredondado=round(self.expressao,1)
@@ -758,8 +766,10 @@ class JanelaBase():
         event: 'Event' = None
         ):
         'devolve o fatorial do numero'
-        self.conteudoCaixa.set(factorial(int(self.expressao)))
-        self.expressao=str(factorial(int(self.expressao)))
+        #usando float para transformar em números, pois float funciona para int
+        #mas int não funciona se o usuário decidir mexer com float
+        self.conteudoCaixa.set(factorial(float(self.expressao)))
+        self.expressao=str(factorial(float(self.expressao)))
         return None
 
     # Método Privado
@@ -768,8 +778,10 @@ class JanelaBase():
         event: 'Event' = None
         ):
         'devolve o log do numero'
-        self.conteudoCaixa.set(log(int(self.expressao)))
-        self.expressao=str(log(int(self.expressao)))
+        #usando float para transformar em números, pois float funciona para int
+        #mas int não funciona se o usuário decidir mexer com float
+        self.conteudoCaixa.set(log(float(self.expressao)))
+        self.expressao=str(log(float(self.expressao)))
         return None
 
     # Método Privado
@@ -778,8 +790,19 @@ class JanelaBase():
         event: 'Event' = None
         ):
         'transforma o grau dado em radianos'
-        self.conteudoCaixa.set(radians(int(self.expressao)))
-        self.expressao=str(radians(int(self.expressao)))
+        #usando float para transformar em números, pois float funciona para int
+        #mas int não funciona se o usuário decidir mexer com float
+        radianosemdecimal=(radians(float(self.expressao)))
+        #para a funçao gcd nao pode ser float
+        divisor=gcd(int(self.expressao),180)
+        numeradorradianos=int(int(self.expressao)/divisor)
+        radianos=str(numeradorradianos)+'π','/',int(180/divisor)
+        final=radianosemdecimal,'ou',radianos
+        self.conteudoCaixa.set(final)
+        #definindo que a expressao que vai continuar ali pro usuario seguir fazendo contas
+        #direto, seja o resultado do radiano em decimais, pois é o que pode ser usado para
+        #continuar a conta, tendo em vista que o valor é o mesmo
+        self.expressao=str(radianosemdecimal)
         return None
 
     # Método Privado
@@ -788,8 +811,18 @@ class JanelaBase():
         event: 'Event' = None
         ):
         'transforma o radianos dado em graus'
-        self.conteudoCaixa.set(round(degrees(float(self.expressao))))
-        self.expressao=str(degrees(int(self.expressao)))
+        #usando float para transformar em números, pois float funciona para int
+        #mas int não funciona se o usuário decidir mexer com float
+        #definindo uma maneira de resolver para caso o usuário digite
+        #o radiano direto na forma mais comum: 'π/x'
+        if 'π' in self.expressao:
+            resultado=pi/float(self.expressao[2])
+            self.conteudoCaixa.set(round(degrees(float(resultado))))
+            self.expressao=str(degrees(float(resultado)))
+        #caso o usuário já saiba a forma decimal do radiano
+        else:
+            self.conteudoCaixa.set(round(degrees(float(self.expressao))))
+            self.expressao=str(degrees(float(self.expressao)))
         return None
     
     # Método Privado
@@ -868,8 +901,8 @@ class JanelaBase():
 
     # Método Público    
     def rodandoJanela(
-        comprimento     : [int,float] = 310,
-        altura          : [int,float] = 230,
+        comprimento     : [int,float] = 320,
+        altura          : [int,float] = 235,
         titulo          : str         = 'Calculadora',
         corFundo        : str         = 'pink',
         corFundoBotao   : str         = 'pink',
@@ -894,19 +927,19 @@ class JanelaBase():
         # Criando uma instancia da janela base
         print('\n> Instanciando uma janela base', end='... ', file=myFile)
         self = JanelaBase()
-        print('OK',file=myFile)
+        print('✓',file=myFile)
 
         # Instanciando uma janela do Tkinter
         print('\n> Instanciando uma janela do Tkinter', end='... ', file=myFile)
         self.janela = Tk()
-        print('OK',file=myFile)
+        print('✓',file=myFile)
 
         # Definindo as configurações da janela gráfica
         print('\n> Configurado janela', end='... ', file=myFile)
         self.__configurarJanela(
             comprimento, altura, titulo, corFundo
         )
-        print('OK',file=myFile)
+        print('✓',file=myFile)
 
         # Definindo as configurações dos botões
         print('\n> Configurando botões',end='... ', file=myFile)
@@ -914,25 +947,25 @@ class JanelaBase():
             corTextoBotao, corFundoBotao, alturaBotao,
             comprimentoBotao
         )
-        print('OK',file=myFile)
+        print('✓',file=myFile)
 
         # Criando os atributos necessários
         print('\n> Criando Atributos',end='... ', file=myFile)
         self.__criarAtributos()
-        print('OK',file=myFile)
+        print('✓',file=myFile)
 
         # Criando e posicionando os widgets na janela
         print('\n> Criando Widgets',end='... ', file=myFile)
         self.__criarWidgets()
-        print('OK',file=myFile)
+        print('✓',file=myFile)
 
         # Definindo ações de teclado
         print('\n> Definindo as ações de teclado',end='... ', file=myFile)
         self.__definirAcoesTeclado()
-        print('OK',file=myFile)
+        print('✓',file=myFile)
 
         # Rodando aplicação
-        print('\n> Janela pronta para execução! ;D', file=myFile)
+        print('\n> Tudo rodando conforme o esperado, hora de calcular ;P', file=myFile)
         self.janela.mainloop()
 
         # Fechando arquivo caso de '.txt'
