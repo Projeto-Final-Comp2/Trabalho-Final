@@ -27,6 +27,7 @@ Nota :
 # Importando TODO conteúdo do módulo de interfaces
 # gráficas 'tkinter'
 from math import *
+from statistics import *
 from tkinter import *
 from tkinter import messagebox
 
@@ -518,6 +519,17 @@ class JanelaBase():
             command=self.__media
         )
 
+        # Criando um botão funcional com o texto 'DP'
+        self.botaoDesvioPadrao = Button(
+            self.janela,
+            text='DP',
+            fg=self.__corBotaoTexto,
+            bg='pale violet red',
+            height=self.__alturaBotao,
+            width=self.__comprimentoBotao,
+            command=self.__desviopadrao
+        )
+
         # Criando um botão funcional com o texto 'CDLXII'
         self.botaoRomanos = Button(
             self.janela,
@@ -571,7 +583,8 @@ class JanelaBase():
         self.botaoConverteGraus   .grid(row=6, column=4)
         self.botaoDel             .grid(row=7, column=4)
         self.botaoMedia           .grid(row=8, column=4)
-        self.botaoRomanos         .grid(row=9, column=4)
+        self.botaoDesvioPadrao    .grid(row=9, column=4)
+        self.botaoRomanos         .grid(row=10, column=4)
             
         return None
 
@@ -891,6 +904,21 @@ X/Y: Simplifico frações\n\nxʸ': Dou a derivada exponencial, é só usar o bot
         return None
 
     # Método Privado
+    def __desviopadrao(
+        self : object,
+        event: 'Event' = None
+        ):
+        'Calcula o desvio padrão de uma lista dos números dados'
+        #Usando float para transformar em números, pois float funciona para int
+        #mas int não funciona se o usuário decidir mexer com float
+        nova=[]
+        listaemstr = str(self.expressao).split('+')
+        for i in listaemstr:
+            nova.append(float(i))
+        self.conteudoCaixa.set(pstdev(nova)) 
+        return None
+
+    # Método Privado
     def __romanos(
         self : object,
         event: 'Event' = None
@@ -987,41 +1015,41 @@ X/Y: Simplifico frações\n\nxʸ': Dou a derivada exponencial, é só usar o bot
         # Criando uma instancia da janela base
         print('\n> Instanciando uma janela base', end='... ', file=myFile)
         self = JanelaBase()
-        print('✓',file=myFile)
+        print('funcionando',file=myFile)
 
         # Instanciando uma janela do Tkinter
         print('\n> Instanciando uma janela do Tkinter', end='... ', file=myFile)
         self.janela = Tk()
-        print('✓',file=myFile)
+        print('funcionando',file=myFile)
 
         # Definindo as configurações da janela gráfica
         print('\n> Configurado janela', end='... ', file=myFile)
         self.__configurarJanela(
             comprimento, altura, titulo, corFundo
         )
-        print('✓',file=myFile)
+        print('funcionando',file=myFile)
 
         # Definindo as configurações dos botões
         print('\n> Configurando botões',end='... ', file=myFile)
         self.__configurarBotao(
             corTextoBotao, alturaBotao, comprimentoBotao
         )
-        print('✓',file=myFile)
+        print('funcionando',file=myFile)
 
         # Criando os atributos necessários
         print('\n> Criando Atributos',end='... ', file=myFile)
         self.__criarAtributos()
-        print('✓',file=myFile)
+        print('funcionando',file=myFile)
 
         # Criando e posicionando os widgets na janela
         print('\n> Criando Widgets',end='... ', file=myFile)
         self.__criarWidgets()
-        print('✓',file=myFile)
+        print('funcionando',file=myFile)
 
         # Definindo ações de teclado
         print('\n> Definindo as ações de teclado',end='... ', file=myFile)
         self.__definirAcoesTeclado()
-        print('✓',file=myFile)
+        print('funcionando',file=myFile)
 
         # Rodando aplicação
         print('\n> Tudo rodando conforme o esperado, hora de calcular ;P', file=myFile)
