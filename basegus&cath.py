@@ -329,7 +329,7 @@ class JanelaBase():
             bg='light coral',
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
-            command=lambda:self.__adicionaValor('**') 
+            command=lambda:self.__adicionaValor('^') 
         )
         
         # Criando um botão funcional com o texto 'C'
@@ -406,7 +406,7 @@ class JanelaBase():
             bg='light coral',
             height=self.__alturaBotao,
             width=self.__comprimentoBotao,
-            command=lambda:self.__adicionaValor('**(1/')
+            command=lambda:self.__adicionaValor('^(1/')
         )
 
         # Criando um botão funcional com o texto '≅'
@@ -522,7 +522,7 @@ class JanelaBase():
         # Criando um botão funcional com o texto 'DP'
         self.botaoDesvioPadrao = Button(
             self.janela,
-            text='DP',
+            text='Desvio P',
             fg=self.__corBotaoTexto,
             bg='pale violet red',
             height=self.__alturaBotao,
@@ -584,7 +584,7 @@ class JanelaBase():
         self.botaoDel             .grid(row=7, column=4)
         self.botaoMedia           .grid(row=8, column=4)
         self.botaoDesvioPadrao    .grid(row=9, column=4)
-        self.botaoRomanos         .grid(row=10, column=4)
+        self.botaoRomanos         .grid(row=9, column=3)
             
         return None
 
@@ -622,7 +622,7 @@ class JanelaBase():
         # Tratando possíveis erros
         try:
             # Ajustando os simbolos de multiplicação e divisão
-            expressao = self.expressao.replace('x','*').replace('÷','/').replace('π','pi')
+            expressao = self.expressao.replace('x','*').replace('÷','/').replace('π','pi').replace('^', '**')
 
             # Avaliando a expressão
             resultado = eval(expressao)
@@ -632,6 +632,7 @@ class JanelaBase():
 
             # Exibindo resultado na caixa
             self.conteudoCaixa.set(str(resultado))
+            
 
             # Informando que houve erro
             houveErro = False
@@ -649,16 +650,22 @@ class JanelaBase():
             print(f'\nDeuRuim: Problema desconhecido\n', file=sys.stderr)
 
         finally:
+            # Criando arquivo que registra a cada linha o historico de cálculo, com a conta
+            # e o resultado toda vez que uma conta for feita
+            histórico = open('histórico.txt','a')
+            histórico.write(expressao)
+            histórico.write('=')
+            histórico.write(f'{self.conteudoCaixa.get()}\n')
+            histórico.close()
+            
             # Verificando se houve erro
             if houveErro:
                 # Limpando a expressao na memória
                 self.expressao = ''
 
                 # Informando erro na caixa
-                self.conteudoCaixa.set('Vish, deu erro... Tenta de novo!')
-
+                self.conteudoCaixa.set('Vish, deu ruim... Tenta de novo!')
             else:
- #nem precisava pq ele iria em frente
                 # Faça nada
                 pass
 
@@ -757,12 +764,12 @@ class JanelaBase():
         'Retorna a derivada exponencial, sem mostrar alguma icognita '
         # Usando float para transformar em números, pois float funciona para int
         # mas int não funciona se o usuário decidir mexer com float
-        string=self.expressao.split('*')
+        string=self.expressao.split('^')
         numero1=float(string[0])
         numero2=float(string[2])
         resultado=str(numero1*numero2)
         potenciafinal=str(numero2-1)
-        self.conteudoCaixa.set(resultado+'**'+potenciafinal)
+        self.conteudoCaixa.set(resultado+'^'+potenciafinal)
         
         return None
 
@@ -783,8 +790,9 @@ Rad: Posso te dar o radiano do grau digitado na forma decimal ou em função de 
 Graus: Transformo de radiano para grau, é só clicar, pode escrever em decimal ou como π/x que eu vou
 entender\n\nMed: Digite assim '1+2+3+...+n' e clique, que eu faço a média pra você\n
 CLXVII: Transformo o número em algaritmo romano\n\n√ e xʸ: Eu só preciso que você
-escreva antes que número você quer tirar a raiz ou elevar, e depois a potência da raiz ou o expoente\n
-X/Y: Simplifico frações\n\nxʸ': Dou a derivada exponencial, é só usar o botão xʸ ou digitar X**Y, e clicar''')
+escreva antes o número você quer tirar a raiz ou elevar, depois a potência da raiz ou o expoente e
+feche os parenteses\n\nX/Y: Simplifico frações\n\nxʸ': Dou a derivada exponencial, é
+só usar o botão xʸ, e clicar''')
         return None
     # Método Privado
     def __sin(
@@ -798,7 +806,8 @@ X/Y: Simplifico frações\n\nxʸ': Dou a derivada exponencial, é só usar o bot
         nova=radians(self.expressao)
         seno=sin(radians(self.expressao))
         self.expressao=str(seno)
-        self.conteudoCaixa.set((self.expressao))
+        self.conteudoCaixa.set(self.expressao)
+        
         return None
 
     # Método Privado
@@ -814,6 +823,7 @@ X/Y: Simplifico frações\n\nxʸ': Dou a derivada exponencial, é só usar o bot
         cose=cos(nova)
         self.expressao=str(cose)
         self.conteudoCaixa.set(self.expressao)
+        
         return None
 
     # Método Privado
@@ -1015,41 +1025,41 @@ X/Y: Simplifico frações\n\nxʸ': Dou a derivada exponencial, é só usar o bot
         # Criando uma instancia da janela base
         print('\n> Instanciando uma janela base', end='... ', file=myFile)
         self = JanelaBase()
-        print('funcionando',file=myFile)
+        print('Funcionando',file=myFile)
 
         # Instanciando uma janela do Tkinter
         print('\n> Instanciando uma janela do Tkinter', end='... ', file=myFile)
         self.janela = Tk()
-        print('funcionando',file=myFile)
+        print('Funcionando',file=myFile)
 
         # Definindo as configurações da janela gráfica
         print('\n> Configurado janela', end='... ', file=myFile)
         self.__configurarJanela(
             comprimento, altura, titulo, corFundo
         )
-        print('funcionando',file=myFile)
+        print('Funcionando',file=myFile)
 
         # Definindo as configurações dos botões
         print('\n> Configurando botões',end='... ', file=myFile)
         self.__configurarBotao(
             corTextoBotao, alturaBotao, comprimentoBotao
         )
-        print('funcionando',file=myFile)
+        print('Funcionando',file=myFile)
 
         # Criando os atributos necessários
         print('\n> Criando Atributos',end='... ', file=myFile)
         self.__criarAtributos()
-        print('funcionando',file=myFile)
+        print('Funcionando',file=myFile)
 
         # Criando e posicionando os widgets na janela
         print('\n> Criando Widgets',end='... ', file=myFile)
         self.__criarWidgets()
-        print('funcionando',file=myFile)
+        print('Funcionando',file=myFile)
 
         # Definindo ações de teclado
         print('\n> Definindo as ações de teclado',end='... ', file=myFile)
         self.__definirAcoesTeclado()
-        print('funcionando',file=myFile)
+        print('Funcionando',file=myFile)
 
         # Rodando aplicação
         print('\n> Tudo rodando conforme o esperado, hora de calcular ;P', file=myFile)
