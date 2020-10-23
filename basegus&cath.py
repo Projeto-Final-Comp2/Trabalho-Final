@@ -660,11 +660,13 @@ class JanelaBase():
             
             # Verificando se houve erro
             if houveErro:
+                
                 # Limpando a expressao na memória
                 self.expressao = ''
 
                 # Informando erro na caixa
                 self.conteudoCaixa.set('Vish, deu ruim... Tenta de novo!')
+                
             else:
                 # Faça nada
                 pass
@@ -1064,6 +1066,17 @@ só usar o botão xʸ, e clicar''')
         # Rodando aplicação
         print('\n> Tudo rodando conforme o esperado, hora de calcular ;P', file=myFile)
         self.janela.mainloop()
+
+        # Disparando erros
+        if SyntaxError:
+            print(f'\n>ErroDeSintaxe: unexpected EOF while parsing (<string>, line 1)\n', file=myFile)
+            self.__resolveExpressao()
+        elif NameError:
+            print(f'\n>ErroDeNome: name is not defined\n', file=myFile)
+            self.__resolveExpressao()
+        else:
+            print(f'\n>DeuRuim: Problema desconhecido\n', file=myFile)
+            self.__resolveExpressao()
 
         # Fechando arquivo caso de '.txt'
         if 'idlelib' not in str(type(myFile)):
