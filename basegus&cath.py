@@ -653,7 +653,7 @@ class JanelaBase():
             # Criando arquivo que registra a cada linha o historico de cálculo, com a conta
             # e o resultado toda vez que uma conta for feita
             histórico = open('histórico.txt','a')
-            histórico.write(expressao)
+            histórico.write(self.expressao)
             histórico.write('=')
             histórico.write(f'{self.conteudoCaixa.get()}\n')
             histórico.close()
@@ -953,7 +953,7 @@ só usar o botão xʸ, e clicar''')
             self.conteudoCaixa.set(final)
             self.expressao=str(final)    
         else:
-            self.conteudoCaixa.set('Aí não, né! Só posso com número <4000')
+            self.conteudoCaixa.set('Aí não,né!Só posso com 0<número<4000')
         return None
 
     # Método Privado
@@ -1003,7 +1003,7 @@ só usar o botão xʸ, e clicar''')
         # Habilitando ESC para fechar a janela
         self.janela.bind('<Escape>', self.__perguntarPraSair)
 
-        # Habilitando BACKSPACE para limpar caixa de texto
+        # Habilitando BACKSPACE para apagar o ultimo caractere da expressao
         self.janela.bind('<BackSpace>', self.__del)
 
 
@@ -1069,15 +1069,15 @@ só usar o botão xʸ, e clicar''')
 
         # Disparando erros
         if SyntaxError:
-            print(f'\n>ErroDeSintaxe: unexpected EOF while parsing (<string>, line 1)\n', file=myFile)
+            print(f'\nErroDeSintaxe: {SyntaxError}\n', file=myFile)
             self.__resolveExpressao()
         elif NameError:
-            print(f'\n>ErroDeNome: name is not defined\n', file=myFile)
+            print(f'\n>ErroDeNome: {NameError}\n', file=myFile)
             self.__resolveExpressao()
         else:
             print(f'\n>DeuRuim: Problema desconhecido\n', file=myFile)
             self.__resolveExpressao()
-
+                
         # Fechando arquivo caso de '.txt'
         if 'idlelib' not in str(type(myFile)):
             myFile.close()
