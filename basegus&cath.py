@@ -546,7 +546,7 @@ class JanelaBase():
         # Seguindo a mesma ordem em que os botoẽs foram definidos
         # e condizendo com a proximidade entre eles no layout
 
-        #Números
+
         self.botao1               .grid(row=4, column=0)
         self.botao2               .grid(row=4, column=1)
         self.botao3               .grid(row=4, column=2)
@@ -621,7 +621,7 @@ class JanelaBase():
 
         # Tratando possíveis erros
         try:
-            # Ajustando os simbolos de multiplicação e divisão
+            # Ajustando os simbolos de multiplicação, divisão, pi e 'elevado'
             expressao = self.expressao.replace('x','*').replace('÷','/').replace('π','pi').replace('^', '**')
 
             # Avaliando a expressão
@@ -632,8 +632,8 @@ class JanelaBase():
 
             # Exibindo resultado na caixa
             self.conteudoCaixa.set(str(resultado))
-            
 
+            #!!! fazer com que aqui bata no arquivo log
             # Informando que houve erro
             houveErro = False
 
@@ -697,6 +697,8 @@ class JanelaBase():
         # Usando float para transformar em números, pois float funciona para int
         # mas int não funciona se o usuário decidir mexer com float
         self.conteudoCaixa.set(factorial(float(self.expressao)))
+        #redefinindo a expressao com o mesmo conteudo de 'conteudoCaixa', mas
+        #transformando em str de forma que o usuario possa seguir calculando
         self.expressao=str(factorial(float(self.expressao)))
         return None
     
@@ -709,6 +711,8 @@ class JanelaBase():
         # Usando float para transformar em números, pois float funciona para int
         # mas int não funciona se o usuário decidir mexer com float
         self.conteudoCaixa.set(log(float(self.expressao)))
+        #redefinindo a expressao com o mesmo conteudo de 'conteudoCaixa', mas
+        #transformando em str de forma que o usuario possa seguir calculando
         self.expressao=str(log(float(self.expressao)))
         return None
 
@@ -721,13 +725,30 @@ class JanelaBase():
         apenas simplifica usando o maior denominador em comum'''
         # Usando float para transformar em números, pois float funciona para int
         # mas int não funciona se o usuário decidir mexer com float
+
+        #criando lista vazia para adicionar os numeros,sem o sinal de divisao
         nova=[]
         listaemstr = str(self.expressao).split('÷')
         for i in listaemstr:
             nova.append(float(i))
-        divisor=gcd(nova[0],nova[1])
-        fracao=float(nova[0]/divisor),'/',float(nova[1]/divisor)
-        self.conteudoCaixa.set(fracao)
+            #criando condiçao para caso o usuario tente dividir duas vezes direto
+            if len(nova) == 2:
+                #encontrando o maior denominador comum entre os números
+                divisor=gcd(int(nova[0]),int(nova[1]))
+                #escrevendo de maneira que apareça na caixa como uma fraçao mesmo
+                fracao=float(nova[0]/divisor),'/',float(nova[1]/divisor)
+                self.conteudoCaixa.set(fracao)
+                #redefinindo a expressao com o mesmo conteudo de 'conteudoCaixa', mas
+                #transformando em str de forma que o usuario possa seguir calculando
+                #nesse caso separando a sentença para nao dar erro quando seguir as contas direto
+                self.expressao = str(nova[0])+'÷'+str(nova[1])
+            else:
+                self.conteudoCaixa.set('Precisa ser uma divisão simples: X/Y')
+                #redefinindo a expressao pra que apos a mensagem de erro o usuario
+                #possa seguir digitabndo sem ter que limpar a caixa
+                self.expressao = ' '
+                
+    
         return None
  
     # Método Privado
@@ -743,20 +764,26 @@ class JanelaBase():
         # transformacao de grau pra radiano, uma vez que essa funçao fornece 2 resultados
         if 'ou' in self.conteudoCaixa.get():
             string = self.conteudoCaixa.get()
+            #separando a sentença para usar só o numero em decimal
             partida=string.split(' ')
             numero=partida[0]
+            #fatiando de maneira que o parentese antes do numero nao seja incluido
             final=numero[1:-1]
-            self.expressao=float(final)
-            arredondado=round(self.expressao,1)
+            #arredondando para apenas 1 casa decimal depois da virgula
+            arredondado=round(float(final),1)
+            self.conteudoCaixa.set(arredondado)
+            #redefinindo a expressao com o mesmo conteudo de 'conteudoCaixa', mas
+            #transformando em str de forma que o usuario possa seguir calculando
             self.expressao=str(arredondado)
-            self.conteudoCaixa.set(self.expressao)
         # Qualquer outro arredondamento
         else:
             string = self.conteudoCaixa.get()
-            self.expressao=float(string)
-            arredondado=round(self.expressao,1)
+            #arredondando para apenas 1 casa decimal depois da virgula
+            arredondado=round(float(string),1)
+            self.conteudoCaixa.set(arredondado)
+            #redefinindo a expressao com o mesmo conteudo de 'conteudoCaixa', mas
+            #transformando em str de forma que o usuario possa seguir calculando
             self.expressao=str(arredondado)
-            self.conteudoCaixa.set(self.expressao)
         return None
 
     def __deriv(
@@ -766,12 +793,21 @@ class JanelaBase():
         'Retorna a derivada exponencial, sem mostrar alguma icognita '
         # Usando float para transformar em números, pois float funciona para int
         # mas int não funciona se o usuário decidir mexer com float
+
+        #separando a sentença para usar só os numeros, sem o sinal
         string=self.expressao.split('^')
         numero1=float(string[0])
-        numero2=float(string[2])
+        numero2=float(string[1])
+        #multiplicando o coeficiente pelo expoente
         resultado=str(numero1*numero2)
+        #diminui 1 do expoente original
         potenciafinal=str(numero2-1)
+        #colocando o sinal novamente para sair no formato certo
         self.conteudoCaixa.set(resultado+'^'+potenciafinal)
+        #redefinindo a expressao com o mesmo conteudo de 'conteudoCaixa', mas
+        #transformando em str de forma que o usuario possa seguir calculando
+        #nesse caso separando a sentença para nao dar erro quando seguir as contas direto
+        self.expressao=str(resultado)+'^'+str(potenciafinal)
         
         return None
 
@@ -793,8 +829,8 @@ Graus: Transformo de radiano para grau, é só clicar, pode escrever em decimal 
 entender\n\nMed: Digite assim '1+2+3+...+n' e clique, que eu faço a média pra você\n
 CLXVII: Transformo o número em algaritmo romano\n\n√ e xʸ: Eu só preciso que você
 escreva antes o número você quer tirar a raiz ou elevar, depois a potência da raiz ou o expoente e
-feche os parenteses\n\nX/Y: Simplifico frações\n\nxʸ': Dou a derivada exponencial, é
-só usar o botão xʸ, e clicar''')
+feche os parenteses\n\nX/Y: Simplifico frações, se seguir calculando com o valor, o
+resultado final será decimal \n\nxʸ': Dou a derivada exponencial, é só usar o botão xʸ, e clicar''')
         return None
     # Método Privado
     def __sin(
@@ -805,10 +841,14 @@ só usar o botão xʸ, e clicar''')
         # Usando float para transformar em números, pois float funciona para int
         # mas int não funciona se o usuário decidir mexer com float
         self.expressao=float(self.expressao)
+        #transformando em radianos para que a funçao sin do math funcione
         nova=radians(self.expressao)
-        seno=sin(radians(self.expressao))
+        seno=sin(nova)
+        self.conteudoCaixa.set(seno)
+        #redefinindo a expressao com o mesmo conteudo de 'conteudoCaixa', mas
+        #transformando em str de forma que o usuario possa seguir calculando
         self.expressao=str(seno)
-        self.conteudoCaixa.set(self.expressao)
+        
         
         return None
 
@@ -821,10 +861,13 @@ só usar o botão xʸ, e clicar''')
         # Usando float para transformar em números, pois float funciona para int
         # mas int não funciona se o usuário decidir mexer com float
         self.expressao=float(self.expressao)
+        #transformando em radianos para que a funçao cos do math funcione
         nova=radians(self.expressao)
         cose=cos(nova)
+        self.conteudoCaixa.set(cose)
+        #redefinindo a expressao com o mesmo conteudo de 'conteudoCaixa', mas
+        #transformando em str de forma que o usuario possa seguir calculando
         self.expressao=str(cose)
-        self.conteudoCaixa.set(self.expressao)
         
         return None
 
@@ -837,10 +880,13 @@ só usar o botão xʸ, e clicar''')
         # Usando float para transformar em números, pois float funciona para int
         # mas int não funciona se o usuário decidir mexer com float
         self.expressao=float(self.expressao)
+        #transformando em radianos para que a funçao tan do math funcione
         nova=radians(self.expressao)
         tang=tan(nova)
+        self.conteudoCaixa.set(tang)
+        #redefinindo a expressao com o mesmo conteudo de 'conteudoCaixa', mas
+        #transformando em str de forma que o usuario possa seguir calculando
         self.expressao=str(tang)
-        self.conteudoCaixa.set(self.expressao)
         return None
 
     # Método Privado
@@ -852,15 +898,19 @@ só usar o botão xʸ, e clicar''')
         # Usando float para transformar em números, pois float funciona para int
         # mas int não funciona se o usuário decidir mexer com float
         radianosemdecimal=(radians(float(self.expressao)))
-        # Para a funçao gcd nao pode ser float
-        divisor=gcd(int(self.expressao),180)
-        numeradorradianos=int(int(self.expressao)/divisor)
+        # descobrindo divisor comum, para a funçao gcd nao pode ser float
+        divisor=gcd(int(float(self.expressao)),180)
+        #dividindo o numerador pelo divisor comum
+        numeradorradianos=int(int(float(self.expressao))/divisor)
         radianos=str(numeradorradianos)
+        #escrevendo separado de maneira a ter 2 resultados disponiveis
         final=radianosemdecimal,'ou',radianos+'π','/',int(180/divisor)
         self.conteudoCaixa.set(final)
         # Definindo que a expressao que vai continuar ali pro usuario seguir fazendo contas
         # direto, seja o resultado do radiano em decimais, pois é o que pode ser usado para
         # continuar a conta, tendo em vista que o valor é o mesmo
+        # Inclusive, para o caso de deletar apenas o ultimo caractere aqui vai levar em conta
+        # apenas o decimal também
         self.expressao=str(radianosemdecimal)
         return None
 
@@ -876,13 +926,22 @@ só usar o botão xʸ, e clicar''')
         # Definindo uma maneira de resolver para caso o usuário digite
         # o radiano direto na forma mais comum: 'π/x'
         if 'π' in self.expressao:
+            #dividindo de fato pi pelo denominador para ter um decimal
             resultado=pi/float(self.expressao[2])
+            #arredondando para que mesmo que o numero nao seja muito exato saia o grau certo
+            #ex: 0,5235987755982988 seria 30, mas digitando 0,52 apenas tambem da o esperado
             self.conteudoCaixa.set(round(degrees(float(resultado))))
-            self.expressao=str(degrees(float(resultado)))
+            #redefinindo a expressao com o mesmo conteudo de 'conteudoCaixa', mas
+            #transformando em str de forma que o usuario possa seguir calculando
+            self.expressao=str(round(degrees(float(resultado))))
         # Caso o usuário já saiba a forma decimal do radiano
         else:
+            #arredondando para que mesmo que o numero nao seja muito exato saia o grau certo
+            #ex: 0,5235987755982988 seria 30, mas digitando 0,52 apenas tambem da o esperado
             self.conteudoCaixa.set(round(degrees(float(self.expressao))))
-            self.expressao=str(degrees(float(self.expressao)))
+            #redefinindo a expressao com o mesmo conteudo de 'conteudoCaixa', mas
+            #transformando em str de forma que o usuario possa seguir calculando
+            self.expressao=str(round(degrees(float(self.expressao))))
         return None
 
     # Método Privado
@@ -892,11 +951,14 @@ só usar o botão xʸ, e clicar''')
         ):
         '''Apagar apenas o último caractere para não
         ter que apagar a função inteira a cada erro'''
-
-        self.expressao = self.conteudoCaixa.get()
+        #definindo que vai apagar enquanto houver caracteres
         for i in self.expressao:
             self.conteudoCaixa.set(self.expressao[:-1])
+        #redefinindo a expressao com o mesmo conteudo de 'conteudoCaixa' e tornando essa a nova
+        # expressao, de maneira que eu possa apagar e digitar por cima/acrescentando algo
         self.expressao=self.expressao[:-1]
+        #nao ha necessidade para alguma mensagem de erro caso a caixa esteja vazia, o usuario
+        #vai entender
             
         return None
 
@@ -909,10 +971,16 @@ só usar o botão xʸ, e clicar''')
         #Usando float para transformar em números, pois float funciona para int
         #mas int não funciona se o usuário decidir mexer com float
         nova=[]
+        #separando a sentença para usar só os numeros, sem o sinal
         listaemstr = str(self.expressao).split('+')
+        #para qualquer que seja o tamanho da expressao, adicionar os numeros na lista nova
         for i in listaemstr:
             nova.append(float(i))
-        self.conteudoCaixa.set(sum(nova)/len(nova)) 
+            #somando e dividindo pela quantidade de numeros na expressao
+            self.conteudoCaixa.set(sum(nova)/len(nova))
+        #redefinindo a expressao com o mesmo conteudo de 'conteudoCaixa', mas
+        #transformando em str de forma que o usuario possa seguir calculando
+        self.expressao = str(sum(nova)/len(nova))
         return None
 
     # Método Privado
@@ -924,10 +992,15 @@ só usar o botão xʸ, e clicar''')
         #Usando float para transformar em números, pois float funciona para int
         #mas int não funciona se o usuário decidir mexer com float
         nova=[]
+        #separando a sentença para usar só os numeros, sem o sinal
         listaemstr = str(self.expressao).split('+')
+        #para qualquer que seja o tamanho da expressao, adicionar os numeros na lista nova
         for i in listaemstr:
             nova.append(float(i))
-        self.conteudoCaixa.set(pstdev(nova)) 
+            self.conteudoCaixa.set(pstdev(nova))
+        #redefinindo a expressao com o mesmo conteudo de 'conteudoCaixa', mas
+        #transformando em str de forma que o usuario possa seguir calculando
+        self.expressao = str(pstdev(nova))
         return None
 
     # Método Privado
@@ -943,17 +1016,28 @@ só usar o botão xʸ, e clicar''')
         # Caso o usuário queira transformar um float
         if '.' in self.expressao:
             self.conteudoCaixa.set('Não esqueça de usar um número inteiro')
+        #caso o usuario use um numero possivel
         elif 0 < int(self.expressao) < 4000:
+            #para numero que esteja na lista de numeros normais
             for i in range(len(num)):
+                #usando a propria self.expressao
+                #dividindo o numero que deseja transformar
                 numero = int(self.expressao) / num[i]
+                #adicionando na lista de resultado a multiplicaçao do numero romano pelo numero
                 resultado.append(rom[i] * int(numero))
                 self.expressao=int(self.expressao)
                 self.expressao -= num[i] * int(numero)
+            #juntando tudo
             final = ''.join(resultado)
             self.conteudoCaixa.set(final)
-            self.expressao=str(final)    
+            #redefinindo a expressao com o mesmo conteudo de 'conteudoCaixa'
+            self.expressao=str(final)
+        #caso o usuario de 0 ou maior que 4000
         else:
             self.conteudoCaixa.set('Aí não,né!Só posso com 0<número<4000')
+            #redefinindo a expressao pra que apos a mensagem de erro o usuario
+            #possa seguir digitabndo sem ter que limpar a caixa
+            self.expressao = ' '
         return None
 
     # Método Privado
@@ -1067,6 +1151,7 @@ só usar o botão xʸ, e clicar''')
         print('\n> Tudo rodando conforme o esperado, hora de calcular ;P', file=myFile)
         self.janela.mainloop()
 
+        #!!!!!! essa parte tem que ser feita no except do rodandojanela
         # Disparando erros
         if SyntaxError:
             print(f'\nErroDeSintaxe: {SyntaxError}\n', file=myFile)
