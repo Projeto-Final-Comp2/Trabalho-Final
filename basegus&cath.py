@@ -30,6 +30,7 @@ from math import *
 from statistics import *
 from tkinter import *
 from tkinter import messagebox
+import os
 
 class JanelaBase():
     'Classe geradora da janela gráfica'
@@ -638,15 +639,16 @@ class JanelaBase():
             houveErro = False
 
         except SyntaxError as erroInfo:
-            # Reportando erro no shell
-            print(f'\nErroDeSintaxe: {erroInfo}\n', file=sys.stderr)
-
+            # Reportando erro no arquivo log.txt
+            myFile=open('log.txt','w')
+            print(f'\nErroDeSintaxe: {erroInfo}\n', file=myFile)
+        
         except NameError as erroInfo:
-            # Reportando erro no shell
+            # Reportando erro no arquivo log.txt
             print(f'\nErroDeNome: {erroInfo}\n', file=sys.stderr)
 
         except:
-            # Reportando erro no shell
+            # Reportando erro no log.txt
             print(f'\nDeuRuim: Problema desconhecido\n', file=sys.stderr)
 
         finally:
@@ -1151,17 +1153,6 @@ resultado final será decimal \n\nxʸ': Dou a derivada exponencial, é só usar 
         print('\n> Tudo rodando conforme o esperado, hora de calcular ;P', file=myFile)
         self.janela.mainloop()
 
-        #!!!!!! essa parte tem que ser feita no except do rodandojanela
-        # Disparando erros
-        if SyntaxError:
-            print(f'\nErroDeSintaxe: {SyntaxError}\n', file=myFile)
-            self.__resolveExpressao()
-        elif NameError:
-            print(f'\n>ErroDeNome: {NameError}\n', file=myFile)
-            self.__resolveExpressao()
-        else:
-            print(f'\n>DeuRuim: Problema desconhecido\n', file=myFile)
-            self.__resolveExpressao()
                 
         # Fechando arquivo caso de '.txt'
         if 'idlelib' not in str(type(myFile)):
@@ -1181,7 +1172,7 @@ if __name__ == "__main__":
 
     # Executando janela
     JanelaBase.rodandoJanela(
-        myFile=open('log.txt','w')
+        myFile=open('log.txt','a')
     )
 
     # Informando fim do programa
