@@ -30,7 +30,7 @@ from math import *
 from statistics import *
 from tkinter import *
 from tkinter import messagebox
-import os
+
 
 class JanelaBase():
     'Classe geradora da janela gráfica'
@@ -114,7 +114,7 @@ class JanelaBase():
         #self.caixaDaEquacao.width('1')
         
         # Posicionando a caixa de texto considerando a
-        # mescalgem de 3 colunas de espaço, tendo 10 px
+        # mescalgem de 4 colunas de espaço, tendo 10 px
         # de distância entre a borda desse espaço e a caixa
         self.caixaDaEquacao.grid(columnspan=4, ipadx=4)
         self.caixaDaEquacao.icursor(len(self.caixaDaEquacao.get()))
@@ -622,6 +622,15 @@ class JanelaBase():
 
         # Tratando possíveis erros
         try:
+
+            # Criando o arquivo limpo, para que caso haja erro ele adicione o erro e no final
+            # os itens de 'Executando janela e suas funções', e caso não haja ele limpe o arquivo
+            # para que no final escreva os itens de 'Executando janela e suas funções' sem repetir
+            # uma vez que eu tõ usando (log.txt, 'a') no final pois com 'w' ele sobrescreve o print
+            # do erro que foi feito antes
+            
+            myFile=open('log.txt','w')
+            
             # Ajustando os simbolos de multiplicação, divisão, pi e 'elevado'
             expressao = self.expressao.replace('x','*').replace('÷','/').replace('π','pi').replace('^', '**')
 
@@ -637,19 +646,21 @@ class JanelaBase():
             #!!! fazer com que aqui bata no arquivo log
             # Informando que houve erro
             houveErro = False
-
+            
         except SyntaxError as erroInfo:
             # Reportando erro no arquivo log.txt
-            myFile=open('log.txt','w')
-            print(f'\nErroDeSintaxe: {erroInfo}\n', file=myFile)
+            myFile=open('log.txt','r+')
+            print(f'\nErros:\n\n>ErroDeSintaxe: {erroInfo}\n', file=myFile)
         
         except NameError as erroInfo:
             # Reportando erro no arquivo log.txt
-            print(f'\nErroDeNome: {erroInfo}\n', file=sys.stderr)
+            myFile=open('log.txt','r+')
+            print(f'\nErroDeNome: {erroInfo}\n', file=myFile)
 
         except:
             # Reportando erro no log.txt
-            print(f'\nDeuRuim: Problema desconhecido\n', file=sys.stderr)
+            myFile=open('log.txt','r+')
+            print(f'\nDeuRuim: Problema desconhecido\n', file=myFile)
 
         finally:
             # Criando arquivo que registra a cada linha o historico de cálculo, com a conta
@@ -712,7 +723,7 @@ class JanelaBase():
         'Devolve o log do numero'
         # Usando float para transformar em números, pois float funciona para int
         # mas int não funciona se o usuário decidir mexer com float
-        self.conteudoCaixa.set(log(float(self.expressao)))
+        self.conteudoCaixa.set((log(float(self.expressao))))
         #redefinindo a expressao com o mesmo conteudo de 'conteudoCaixa', mas
         #transformando em str de forma que o usuario possa seguir calculando
         self.expressao=str(log(float(self.expressao)))
@@ -820,7 +831,8 @@ class JanelaBase():
         ):
         'Exibe uma janela explicando as funções da calculadora'
 
-        # Abrindo janela com o diálogo
+        # Abrindo janela com as informaçoes referentes a botoes que o usuario possa nao
+        # compreender a funçao de cara
         decisao = messagebox.showinfo(
             'Manual',
             '''Olá! Dúvidas? Veja se isso ajuda:\n\nDica -> Para todas as funções,
@@ -850,8 +862,7 @@ resultado final será decimal \n\nxʸ': Dou a derivada exponencial, é só usar 
         #redefinindo a expressao com o mesmo conteudo de 'conteudoCaixa', mas
         #transformando em str de forma que o usuario possa seguir calculando
         self.expressao=str(seno)
-        
-        
+    
         return None
 
     # Método Privado
@@ -1111,7 +1122,7 @@ resultado final será decimal \n\nxʸ': Dou a derivada exponencial, é só usar 
         'Executando janela e sua funções'
 
         # Criando uma instancia da janela base
-        print('\n> Instanciando uma janela base', end='... ', file=myFile)
+        print('\nExecutando janela e suas funções:\n\n> Instanciando uma janela base', end='... ', file=myFile)
         self = JanelaBase()
         print('Funcionando',file=myFile)
 
